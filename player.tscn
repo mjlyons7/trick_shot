@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://ca8kp46mqdnyd"]
+
+[ext_resource type="Script" path="res://Player.cs" id="1_dbdpr"]
+[ext_resource type="Texture2D" uid="uid://dqdy66w8o2yur" path="res://assets/sprites/mah-boi1.png" id="2_s2387"]
+[ext_resource type="Texture2D" uid="uid://clw20d5co7ri5" path="res://assets/sprites/mah-boi2.png" id="3_2v4mb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vu8yo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_s2387")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2v4mb")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7u7lm"]
+size = Vector2(36, 93.5)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_dbdpr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vu8yo")
+animation = &"walk"
+frame = 1
+frame_progress = 0.634805
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -0.25)
+shape = SubResource("RectangleShape2D_7u7lm")

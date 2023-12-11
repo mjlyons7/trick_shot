@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy7y5jyml5ris"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7amjd"]
+size = Vector2(95, 96)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_kj780"]
+
+[node name="test_ball" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(50, 50)
+shape = SubResource("RectangleShape2D_7amjd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(50, 50)
+scale = Vector2(100, 100)
+texture = SubResource("CanvasTexture_kj780")
