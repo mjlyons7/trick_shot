@@ -8,11 +8,11 @@ public partial class Player : CharacterBody2D
     long framesSinceLastSecond;
     double timeSinceLastSecond;
     double fps;
-    double baseSpeed = 5*10e3; // pixels per second
-    double terminalVelocity = 5*10e2;
-    double initialJumpVelocity = 1 * 10e2;
+    double baseSpeed = 6e2; // pixels per second
+    double terminalVelocity = 5e3;
+    double initialJumpVelocity = 1e3;
     double projectGravity;
-    double gravityMultiplier = 5 * 10e1;
+    double gravityMultiplier = 2e0;
 
     string walkAnimationName = "walk";
     AnimatedSprite2D playerSprite;
@@ -58,16 +58,17 @@ public partial class Player : CharacterBody2D
 
         // apply motion
         // directionVector.X * baseSpeed * delta
+        // 60 pixels/sec 
         var velocity = Velocity;
-        velocity.X = directionVector.X * (float)baseSpeed * (float)delta;
+        velocity.X = directionVector.X * (float)baseSpeed;
 
-        velocity.Y += (float) ((0.5) * gravityMultiplier * projectGravity * Math.Pow(delta, 2));
+        // v = v0 + at
+        velocity.Y += (float) (gravityMultiplier * projectGravity * delta);
         if (jumpPressedThisFrame)
             velocity.Y = (float) -initialJumpVelocity;
         if (velocity.Y > terminalVelocity)
             velocity.Y = (float)terminalVelocity;
         Velocity = velocity;
-        MoveAndSlide();
 
         // animation
         if (Velocity.X < 0)
@@ -87,5 +88,10 @@ public partial class Player : CharacterBody2D
             Debug.WriteLine("Velocity: "+Velocity.ToString());
             Debug.WriteLine("FPS: " + fps.ToString());
         }
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        MoveAndSlide();
     }
 }

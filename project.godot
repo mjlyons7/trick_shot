@@ -13,7 +13,6 @@ config_version=5
 config/name="Trick Shot"
 run/main_scene="res://TestRoom2D.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
-run/max_fps=90
 config/icon="res://icon.svg"
 
 [dotnet]
