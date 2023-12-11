@@ -5,7 +5,9 @@ using System.Diagnostics;
 public partial class Player : CharacterBody2D
 {
     double timePassed;
+    long framesSinceLastSecond;
     double timeSinceLastSecond;
+    double fps;
     double baseSpeed = 5*10e3; // pixels per second
     double terminalVelocity = 5*10e2;
     double initialJumpVelocity = 1 * 10e2;
@@ -26,15 +28,19 @@ public partial class Player : CharacterBody2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        // timer
+        // tracking time
         timePassed += delta;
         timeSinceLastSecond += delta;
+        framesSinceLastSecond += 1;
         bool secondPassedThisFrame = false;
         if (timeSinceLastSecond > 1)
         {
-            timeSinceLastSecond %= 1;
+            fps = framesSinceLastSecond / timeSinceLastSecond;
+            timeSinceLastSecond = 0;
+            framesSinceLastSecond = 0;
             secondPassedThisFrame = true;
         }
+        
 
         // get inputs
         var directionVector = new Vector2();
@@ -79,6 +85,7 @@ public partial class Player : CharacterBody2D
         {
             Debug.WriteLine("direction input: "+directionVector.ToString());
             Debug.WriteLine("Velocity: "+Velocity.ToString());
+            Debug.WriteLine("FPS: " + fps.ToString());
         }
     }
 }
