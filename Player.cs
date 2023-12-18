@@ -1,13 +1,13 @@
 using Godot;
 using System;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 public partial class Player : CharacterBody2D
 {
     double timePassed;
     long framesSinceLastSecond;
     double timeSinceLastSecond;
-    double fps;
     double baseSpeed = 6e2; // pixels per second
     double terminalVelocity = 5e3;
     double initialJumpVelocity = 1e3;
@@ -16,6 +16,7 @@ public partial class Player : CharacterBody2D
 
     string walkAnimationName = "walk";
     AnimatedSprite2D playerSprite;
+    DebugHelper helper;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -23,24 +24,15 @@ public partial class Player : CharacterBody2D
         projectGravity = (double) ProjectSettings.GetSetting("physics/2d/default_gravity");
         playerSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         playerSprite.Animation = walkAnimationName;
+
+        helper = new DebugHelper();
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        // tracking time
-        timePassed += delta;
-        timeSinceLastSecond += delta;
-        framesSinceLastSecond += 1;
-        bool secondPassedThisFrame = false;
-        if (timeSinceLastSecond > 1)
-        {
-            fps = framesSinceLastSecond / timeSinceLastSecond;
-            timeSinceLastSecond = 0;
-            framesSinceLastSecond = 0;
-            secondPassedThisFrame = true;
-        }
-        
+
+        helper.Run(delta);
 
         // get inputs
         var directionVector = new Vector2();
@@ -66,7 +58,7 @@ public partial class Player : CharacterBody2D
         velocity.Y += (float) (gravityMultiplier * projectGravity * delta);
         if (jumpPressedThisFrame)
             velocity.Y = (float) -initialJumpVelocity;
-        if (velocity.Y > terminalVelocity)
+        else if (velocity.Y > terminalVelocity)
             velocity.Y = (float)terminalVelocity;
         Velocity = velocity;
 
@@ -81,13 +73,12 @@ public partial class Player : CharacterBody2D
         else
             playerSprite.Stop();
 
-        // TODO: erase later, just for debugging
-        if (secondPassedThisFrame)
-        {
-            Debug.WriteLine("direction input: "+directionVector.ToString());
-            Debug.WriteLine("Velocity: "+Velocity.ToString());
-            Debug.WriteLine("FPS: " + fps.ToString());
-        }
+        // debug print
+        var strings = new List<string>();
+        strings.Add("FPS: " + helper.fps);
+        strings.Add("direction input: " + directionVector.ToString());
+        strings.Add("Velocity: " + Velocity.ToString());
+        helper.PrintAfterInterval(strings);
     }
 
     public override void _PhysicsProcess(double delta)
