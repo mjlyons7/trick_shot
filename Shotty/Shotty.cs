@@ -6,24 +6,26 @@ public partial class Shotty : Sprite2D
 {
     Vector2 rotationOrigin;
     Vector2 targetVector;
+    CharacterBody2D player;
+
     DebugHelper helper;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         helper = new DebugHelper();
+        player = GetParent().GetNode<CharacterBody2D>("Player");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
         helper.Run(delta);
-    }
 
-    public override void _PhysicsProcess(double delta)
-    {
+        Position = player.Position;
         rotationOrigin = GlobalPosition;
         RotateToTarget();
+
         HelperPrint(delta);
     }
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://7j7wb0j50ooc"]
+[gd_scene load_steps=8 format=3 uid="uid://7j7wb0j50ooc"]
 
 [ext_resource type="Script" path="res://SkyBackground.cs" id="1_30ake"]
 [ext_resource type="PackedScene" uid="uid://ca8kp46mqdnyd" path="res://player/player.tscn" id="2_7y7fv"]
 [ext_resource type="Texture2D" uid="uid://b3cy6l137oviy" path="res://assets/sprites/clouds.png" id="2_458xp"]
 [ext_resource type="Texture2D" uid="uid://crlicpk51ed3n" path="res://assets/sprites/tilesheet_complete.png" id="3_cp1ht"]
+[ext_resource type="PackedScene" uid="uid://c7a6hy2q0u32n" path="res://Shotty/Shotty.tscn" id="5_5stl7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_umrs4"]
 resource_name = "kenney_sample"
@@ -1420,3 +1421,5 @@ position = Vector2(125, 42)
 floor_max_angle = 0.872665
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Shotty" parent="." instance=ExtResource("5_5stl7")]
