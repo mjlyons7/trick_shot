@@ -9,8 +9,8 @@ public class DebugHelper
     public double totalSecondsPassed;
 
     private double printInterval; // default 1 second
-    
-    private bool intervalElapsed;
+    public bool intervalElapsed;
+
     private double timeSinceLastInterval;
     private int framesSinceLastInterval;
 

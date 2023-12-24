@@ -5,7 +5,6 @@
 
 [node name="Shotty" type="Sprite2D"]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(100, 100)
 texture = ExtResource("1_lll7u")
 centered = false
 offset = Vector2(0, -5)

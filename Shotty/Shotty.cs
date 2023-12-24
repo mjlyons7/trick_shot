@@ -5,40 +5,56 @@ using System.Collections.Generic;
 public partial class Shotty : Sprite2D
 {
     Vector2 rotationOrigin;
+    Vector2 targetVector;
     DebugHelper helper;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        rotationOrigin = Position;
-        rotationOrigin.Y += Scale.Y / 2;
         helper = new DebugHelper();
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        rotateToTarget();
-
-        // debug strings
         helper.Run(delta);
-        var strings = new List<string>();
-        var rotationDegrees = Rotation * 180 / Math.PI;
-        strings.Add("Rotation: " + rotationDegrees.ToString());
-        helper.PrintAfterInterval(strings);
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        rotationOrigin = GlobalPosition;
+        RotateToTarget();
+        HelperPrint(delta);
     }
 
     // rotate towards the target
-    private void rotateToTarget()
+    private void RotateToTarget()
     {
-        var targetVector = GetTargetPoint() - rotationOrigin;
-        Rotation = Mathf.Atan2(targetVector.Y, targetVector.X);
+        targetVector = GetTargetPoint() - rotationOrigin;
+        var targetRotation = Mathf.Atan2(targetVector.Y, targetVector.X);
+        Rotation = targetRotation;
     }
 
     private Vector2 GetTargetPoint()
     {
-        // target the mouse
-        var target = GetViewport().GetMousePosition();
+        // return mouse's position in game world coordinates
+        // TODO: get mouse position is out of date after physics calc...
+        var target = GetGlobalMousePosition();
         return target;
+    }
+
+    private void HelperPrint(double delta)
+    {
+        // debug strings
+        var strings = new List<string>();
+
+        // var rotationDegrees = Rotation * 180 / Math.PI;
+        // strings.Add("Rotation: " + rotationDegrees.ToString());
+        strings.Add("--------------");
+        strings.Add("Mouse pos: " + GetTargetPoint().ToString());
+        strings.Add("rot source: " + rotationOrigin.ToString());
+        strings.Add("target vector: " + targetVector.ToString());
+
+        helper.PrintAfterInterval(strings);
     }
 }

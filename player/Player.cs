@@ -74,11 +74,13 @@ public partial class Player : CharacterBody2D
             playerSprite.Stop();
 
         // debug print
-        var strings = new List<string>();
-        strings.Add("FPS: " + helper.fps);
-        strings.Add("direction input: " + directionVector.ToString());
-        strings.Add("Velocity: " + Velocity.ToString());
-        helper.PrintAfterInterval(strings);
+        if (helper.intervalElapsed)
+        {
+            var strings = new List<string>();
+            //strings.Add("direction input: " + directionVector.ToString());
+            strings.Add("Velocity: " + Velocity.ToString());
+            helper.PrintAfterInterval(strings);
+        }
     }
 
     public override void _PhysicsProcess(double delta)

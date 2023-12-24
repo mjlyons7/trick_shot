@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ca8kp46mqdnyd"]
+[gd_scene load_steps=7 format=3 uid="uid://ca8kp46mqdnyd"]
 
-[ext_resource type="Script" path="res://Player.cs" id="1_dbdpr"]
+[ext_resource type="Script" path="res://player/Player.cs" id="1_dbdpr"]
 [ext_resource type="Texture2D" uid="uid://dqdy66w8o2yur" path="res://assets/sprites/mah-boi1.png" id="2_s2387"]
 [ext_resource type="Texture2D" uid="uid://clw20d5co7ri5" path="res://assets/sprites/mah-boi2.png" id="3_2v4mb"]
+[ext_resource type="PackedScene" uid="uid://c7a6hy2q0u32n" path="res://Shotty/Shotty.tscn" id="4_jyq0i"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vu8yo"]
 animations = [{
@@ -33,3 +34,5 @@ frame_progress = 0.634805
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -0.25)
 shape = SubResource("RectangleShape2D_7u7lm")
+
+[node name="Shotty" parent="." instance=ExtResource("4_jyq0i")]
