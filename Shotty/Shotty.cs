@@ -1,10 +1,10 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 
 public partial class Shotty : Sprite2D
 {
+    public const string ClassName = "Shotty";
     Vector2 rotationOrigin;
     Vector2 targetVector;
     CharacterBody2D player;
