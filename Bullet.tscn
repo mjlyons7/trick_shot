@@ -16,3 +16,5 @@ shape = SubResource("RectangleShape2D_2gnvl")
 position = Vector2(-2.38419e-07, -2.38419e-07)
 scale = Vector2(20, 20)
 texture = SubResource("CanvasTexture_86day")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

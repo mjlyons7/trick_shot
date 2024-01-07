@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class Bullet : Area2D
 {
@@ -16,5 +17,10 @@ public partial class Bullet : Area2D
 	public override void _Process(double delta)
 	{
 		Position += ((float)delta * speed) * direction;
+	}
+
+	private void OnBodyEntered(Node2D body)
+	{
+		Debug.WriteLine("Body entered: " + body.ToString());
 	}
 }
