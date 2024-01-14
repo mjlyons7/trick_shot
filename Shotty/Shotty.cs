@@ -27,7 +27,7 @@ public partial class Shotty : Sprite2D
         helper.Run(delta);
         var debugStrings = new List<string>();
 
-        // rotation
+        // position and rotation
         if (player is not null)
             Position = player.Position;
         else

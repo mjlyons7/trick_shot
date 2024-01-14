@@ -7,6 +7,7 @@ public class DebugHelper
 {
     public double fps;
     public double totalSecondsPassed;
+    public long totalFramesPassed;
 
     private double printInterval; // default 1 second
     public bool intervalElapsed;
@@ -46,6 +47,7 @@ public class DebugHelper
     {
         // calculate fps, updated every second
         totalSecondsPassed += delta;
+        totalFramesPassed += 1;
 
         // determine if the set interval of time has elapsed this frame or not
         timeSinceLastInterval += delta;

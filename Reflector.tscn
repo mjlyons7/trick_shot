@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqr5bwj62dql3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2h6w"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_nmevi"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4ggbl"]
+
+[node name="Reflector" type="Area2D" groups=["reflect"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f2h6w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(20, 20)
+texture = SubResource("CanvasTexture_nmevi")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16.75, 0)
+scale = Vector2(34.5, 1)
+texture = SubResource("CanvasTexture_4ggbl")

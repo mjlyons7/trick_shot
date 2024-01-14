@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://7j7wb0j50ooc"]
+[gd_scene load_steps=10 format=3 uid="uid://7j7wb0j50ooc"]
 
 [ext_resource type="Script" path="res://Map.cs" id="1_7ow7a"]
 [ext_resource type="PackedScene" uid="uid://ca8kp46mqdnyd" path="res://player/player.tscn" id="2_7y7fv"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cxh2cpr24nnwx" path="res://Bullet.tscn" id="2_kg0yg"]
 [ext_resource type="Texture2D" uid="uid://crlicpk51ed3n" path="res://assets/sprites/tilesheet_complete.png" id="3_cp1ht"]
 [ext_resource type="PackedScene" uid="uid://c7a6hy2q0u32n" path="res://Shotty/Shotty.tscn" id="5_5stl7"]
+[ext_resource type="PackedScene" uid="uid://dqr5bwj62dql3" path="res://Reflector.tscn" id="7_piv0u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_umrs4"]
 resource_name = "kenney_sample"
@@ -1423,5 +1424,35 @@ position = Vector2(125, 42)
 floor_max_angle = 0.872665
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.75, 0.75)
 
 [node name="Shotty" parent="." instance=ExtResource("5_5stl7")]
+
+[node name="Reflector" parent="." instance=ExtResource("7_piv0u")]
+position = Vector2(1013, -139)
+rotation = 3.14159
+scale = Vector2(1, 20)
+
+[node name="Reflector2" parent="." instance=ExtResource("7_piv0u")]
+position = Vector2(1072, -288)
+rotation = 0.785398
+scale = Vector2(1, 20)
+skew = 5.05447e-05
+
+[node name="Reflector3" parent="." instance=ExtResource("7_piv0u")]
+position = Vector2(1331, -384)
+rotation = 1.5708
+scale = Vector2(1, 20)
+skew = 5.05447e-05
+
+[node name="Reflector4" parent="." instance=ExtResource("7_piv0u")]
+position = Vector2(1718, -384)
+rotation = 1.5708
+scale = Vector2(1, 20)
+skew = 5.05447e-05
+
+[node name="Reflector5" parent="." instance=ExtResource("7_piv0u")]
+position = Vector2(1938, -315)
+rotation = 2.35619
+scale = Vector2(1, 20)
+skew = 5.05447e-05

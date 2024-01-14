@@ -27,7 +27,7 @@ public partial class Map : Node2D
                 AddChild(bullet);
             }
             else
-                Debug.WriteLine("Reference to shotty not found");
+                Debug.WriteLine("Reference to " + Shotty.ClassName + " not found");
         }
     }
 }
