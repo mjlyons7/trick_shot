@@ -21,8 +21,6 @@ public partial class Map : Node2D
             if (shottyRef is not null)
             {
                 var bullet = bulletScene.Instantiate<Bullet>();
-                // bullet.Position = shottyRef.Position;
-                // bullet.Rotation = shottyRef.Rotation;
                 bullet.Transform = shottyRef.Transform;
                 AddChild(bullet);
             }

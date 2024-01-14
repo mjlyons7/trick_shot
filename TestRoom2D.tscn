@@ -1456,3 +1456,8 @@ position = Vector2(1938, -315)
 rotation = 2.35619
 scale = Vector2(1, 20)
 skew = 5.05447e-05
+
+[node name="Reflector6" parent="." instance=ExtResource("7_piv0u")]
+position = Vector2(56, -62)
+scale = Vector2(1, 20)
+skew = 5.05447e-05
