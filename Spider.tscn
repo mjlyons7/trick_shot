@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7q15km48c1hs"]
+
+[ext_resource type="Script" path="res://Spider.cs" id="1_7a35s"]
+[ext_resource type="Texture2D" uid="uid://bm4xi2jddsnhs" path="res://assets/sprites/spider1.png" id="1_06101"]
+[ext_resource type="Texture2D" uid="uid://u3q4l7xxvjdr" path="res://assets/sprites/spider2.png" id="2_uapff"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3s2r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_06101")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_uapff")
+}],
+"loop": true,
+"name": &"squinch",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhseu"]
+size = Vector2(32, 40)
+
+[node name="Spider" type="StaticBody2D"]
+script = ExtResource("1_7a35s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n3s2r")
+animation = &"squinch"
+frame_progress = 0.0608505
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jhseu")

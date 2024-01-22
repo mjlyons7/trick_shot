@@ -15,6 +15,7 @@ public partial class Map : Node2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
+        // TODO: why is the map monitoring the gun? I think the gun should be spawning bullets, not the map
         if (Input.IsActionJustPressed("shoot"))
         {
             var shottyRef = GetNode<Shotty>(Shotty.ClassName);
@@ -27,5 +28,8 @@ public partial class Map : Node2D
             else
                 Debug.WriteLine("Reference to " + Shotty.ClassName + " not found");
         }
+
+        if (Input.IsActionJustPressed("reset"))
+            GetTree().ReloadCurrentScene();
     }
 }

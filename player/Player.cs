@@ -3,8 +3,15 @@ using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 
-public partial class Player : CharacterBody2D
+public partial class Player : CharacterBody2D, IMortal
 {
+    int _hitPoints = 1;
+    public int HitPoints
+    {
+        get => _hitPoints;
+        set => _hitPoints = value;
+    }
+
     double timePassed;
     long framesSinceLastSecond;
     double timeSinceLastSecond;
@@ -87,4 +94,11 @@ public partial class Player : CharacterBody2D
     {
         MoveAndSlide();
     }
+
+    #region IMortal Overrides
+    public void Die()
+    {
+        Visible = false;
+    }
+    #endregion
 }

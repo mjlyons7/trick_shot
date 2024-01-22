@@ -1,16 +1,17 @@
 using Godot;
 using System;
 using System.Diagnostics;
+using System.Linq;
 
 public partial class Bullet : Area2D
 {
 	float speed = 1000; // pixels per second
 	float rayLength = 25;
+	float lifespan = 5; // seconds
 	Vector2 direction;
 	DebugHelper helper;
 
 	int collisionCount;
-	int maxCollisions = 5;
 	string previousAreaCollidedWith;
 
 	// Called when the node enters the scene tree for the first time.
@@ -42,7 +43,7 @@ public partial class Bullet : Area2D
 		helper.Run(delta);
 
 		// kill
-		if (collisionCount > maxCollisions)
+		if (lifespan < helper.totalSecondsPassed)
 			QueueFree();
 	}
 
@@ -58,7 +59,25 @@ public partial class Bullet : Area2D
 		var result = spaceState.IntersectRay(query);
 		if (result.Count > 0)
         {
-			ReflectOff(result);
+			StringName reflectorGroupName = new StringName(Globals.GROUP_REFLECTORS);
+
+            var collidedNode = result["collider"].As<Node>();
+
+            if (collidedNode is not null)
+			{
+				var collidedGroupNames = collidedNode.GetGroups();
+
+				// decide what to do based on object collided with. Default case is despawn
+				if (collidedGroupNames.Contains(reflectorGroupName))
+					ReflectOff(result);
+				else if (collidedNode is IMortal mortal)
+				{
+					// TODO: should be pub/sub model, I think
+					mortal.OnHit();
+                }
+				else
+					QueueFree();
+			}
         }
 	}
 
