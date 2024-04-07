@@ -2,12 +2,13 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class Shotty : Sprite2D
+public partial class Shotty : BulletSpawner
 {
     public const string ClassName = "Shotty";
     Vector2 rotationOrigin;
     Vector2 targetVector;
     CharacterBody2D player;
+    Sprite2D shottySprite;
 
     DebugHelper helper;
 
@@ -16,9 +17,10 @@ public partial class Shotty : Sprite2D
     {
         helper = new DebugHelper();
         player = GetParent().GetNode<CharacterBody2D>("Player");
+        shottySprite = GetNode<Sprite2D>("ShottySprite");
 
         // vertically center sprite around x-axis
-        Offset = new Vector2(0, -(Texture.GetSize().Y / 2));
+        shottySprite.Offset = new Vector2(0, -(shottySprite.Texture.GetSize().Y / 2));
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,12 +42,16 @@ public partial class Shotty : Sprite2D
         // animation
         if ((Rotation < -Math.PI / 2) || (Rotation > Math.PI / 2))
         {
-            FlipV = true;
+            shottySprite.FlipV = true;
         }
         else
         {
-            FlipV = false;
+            shottySprite.FlipV = false;
         }
+
+        // handle inputs
+        if (Input.IsActionJustPressed("shoot"))
+            Shoot(Transform);
 
         // print debug info
         HelperPrint(debugStrings, delta);

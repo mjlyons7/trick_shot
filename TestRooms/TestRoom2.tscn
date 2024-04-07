@@ -1,17 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://s6q7m7w4rpw7"]
+[gd_scene load_steps=10 format=3 uid="uid://s6q7m7w4rpw7"]
 
-[ext_resource type="Script" path="res://Map.cs" id="1_lmsv4"]
-[ext_resource type="PackedScene" uid="uid://cxh2cpr24nnwx" path="res://Bullet.tscn" id="2_8h742"]
-[ext_resource type="Texture2D" uid="uid://b3cy6l137oviy" path="res://assets/sprites/clouds.png" id="3_ihfv2"]
-[ext_resource type="Texture2D" uid="uid://crlicpk51ed3n" path="res://assets/sprites/tilesheet_complete.png" id="4_s1ng6"]
-[ext_resource type="PackedScene" uid="uid://ca8kp46mqdnyd" path="res://player/player.tscn" id="5_swg47"]
-[ext_resource type="PackedScene" uid="uid://c7a6hy2q0u32n" path="res://Shotty/Shotty.tscn" id="6_l0okr"]
-[ext_resource type="PackedScene" uid="uid://dqr5bwj62dql3" path="res://Reflector.tscn" id="7_1ewk6"]
-[ext_resource type="PackedScene" uid="uid://b7q15km48c1hs" path="res://Spider.tscn" id="8_3pr5g"]
+[ext_resource type="Script" path="res://Map.cs" id="1_x1uu8"]
+[ext_resource type="Texture2D" uid="uid://b3cy6l137oviy" path="res://assets/sprites/clouds.png" id="3_q6eq3"]
+[ext_resource type="Texture2D" uid="uid://crlicpk51ed3n" path="res://assets/sprites/tilesheet_complete.png" id="4_h2eyw"]
+[ext_resource type="PackedScene" uid="uid://ca8kp46mqdnyd" path="res://player/player.tscn" id="5_yeqos"]
+[ext_resource type="PackedScene" uid="uid://c7a6hy2q0u32n" path="res://Shotty/Shotty.tscn" id="6_80bht"]
+[ext_resource type="PackedScene" uid="uid://b7q15km48c1hs" path="res://Spider.tscn" id="7_a1gdj"]
+[ext_resource type="PackedScene" uid="uid://dqr5bwj62dql3" path="res://Reflector.tscn" id="8_ngox1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_umrs4"]
 resource_name = "kenney_sample"
-texture = ExtResource("4_s1ng6")
+texture = ExtResource("4_h2eyw")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1397,10 +1396,9 @@ physics_layer_1/collision_mask = 2
 sources/1 = SubResource("TileSetAtlasSource_umrs4")
 
 [node name="TestRoom" type="Node2D"]
-script = ExtResource("1_lmsv4")
-bulletScene = ExtResource("2_8h742")
-metadata/_edit_horizontal_guides_ = []
-metadata/_edit_vertical_guides_ = []
+script = ExtResource("1_x1uu8")
+metadata/_edit_horizontal_guides_ = [-361.0]
+metadata/_edit_vertical_guides_ = [-361.0]
 
 [node name="SkyBackground" type="ParallaxBackground" parent="."]
 
@@ -1410,7 +1408,7 @@ motion_mirroring = Vector2(2048, 2048)
 
 [node name="Clouds" type="Sprite2D" parent="SkyBackground/ParallaxLayer"]
 texture_repeat = 2
-texture = ExtResource("3_ihfv2")
+texture = ExtResource("3_q6eq3")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 2048, 2048)
@@ -1420,47 +1418,47 @@ tile_set = SubResource("TileSet_2oad6")
 format = 2
 layer_0/tile_data = PackedInt32Array(196606, 131073, 9, 196607, 131073, 9, 131072, 131073, 9, 131073, 131073, 9, 131074, 131073, 9, 131075, 131073, 9, 131076, 131073, 9, 131077, 131073, 9, 131078, 131073, 9, 131079, 131073, 9, 131080, 131073, 9, 131081, 131073, 9, 131082, 131073, 9, 131083, 131073, 9, 131084, 131073, 9, 131085, 131073, 9, 131086, 131073, 9, 131087, 131073, 9, 131088, 131073, 9, 131089, 131073, 9, 131090, 131073, 9, 131091, 131073, 9, 131092, 131073, 9, 131093, 131073, 9, 131094, 131073, 9, 131095, 131073, 9, 131096, 131073, 9, 131097, 131073, 9, 131098, 131073, 9, 131099, 131073, 9, 131100, 131073, 9, 131101, 131073, 9, 131104, 131073, 9, 131102, 131073, 9, 131103, 131073, 9, 131105, 131073, 9, 131106, 131073, 9, 131107, 131073, 9, 262142, 1, 9, 262143, 1, 9, 196608, 1, 9, 196609, 1, 9, 196610, 1, 9, 196611, 1, 9, 196612, 1, 9, 196613, 1, 9, 196614, 1, 9, 196615, 1, 9, 196616, 1, 9, 196617, 1, 9, 196618, 1, 9, 196619, 1, 9, 196620, 1, 9, 196621, 1, 9, 196622, 1, 9, 196623, 1, 9, 196624, 1, 9, 196625, 1, 9, 196626, 1, 9, 196627, 1, 9, 196628, 1, 9, 196629, 1, 9, 196630, 1, 9, 196631, 1, 9, 196632, 1, 9, 196633, 1, 9, 196634, 1, 9, 196635, 1, 9, 196636, 1, 9, 196637, 1, 9, 196638, 1, 9, 196639, 1, 9, 196640, 1, 9, 196641, 1, 9, 196642, 1, 9, 196643, 1, 9)
 
-[node name="Player" parent="." instance=ExtResource("5_swg47")]
+[node name="Player" parent="." instance=ExtResource("5_yeqos")]
 position = Vector2(125, 42)
 floor_max_angle = 0.872665
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.75, 0.75)
 
-[node name="Shotty" parent="." instance=ExtResource("6_l0okr")]
+[node name="Shotty" parent="." instance=ExtResource("6_80bht")]
 
-[node name="Spider" parent="." instance=ExtResource("8_3pr5g")]
-position = Vector2(2251, -197)
+[node name="Spider" parent="." instance=ExtResource("7_a1gdj")]
+position = Vector2(2247, -198)
 
 [node name="Barn" type="Node2D" parent="."]
 position = Vector2(1898, -18)
 
-[node name="Reflector" parent="Barn" instance=ExtResource("7_1ewk6")]
+[node name="Reflector" parent="Barn" instance=ExtResource("8_ngox1")]
 position = Vector2(-378, -216)
 rotation = 3.14159
 scale = Vector2(1, 20)
 
-[node name="Reflector2" parent="Barn" instance=ExtResource("7_1ewk6")]
+[node name="Reflector2" parent="Barn" instance=ExtResource("8_ngox1")]
 position = Vector2(397, -36)
 rotation = 3.14159
 scale = Vector2(1, 20)
 
-[node name="Reflector4" parent="Barn" instance=ExtResource("7_1ewk6")]
+[node name="Reflector4" parent="Barn" instance=ExtResource("8_ngox1")]
 position = Vector2(-184, 155)
 rotation = 1.5708
 scale = Vector2(1, 20)
 
-[node name="Reflector5" parent="Barn" instance=ExtResource("7_1ewk6")]
+[node name="Reflector5" parent="Barn" instance=ExtResource("8_ngox1")]
 position = Vector2(206, 155)
 rotation = 1.5708
 scale = Vector2(1, 20)
 
-[node name="Reflector6" parent="Barn" instance=ExtResource("7_1ewk6")]
+[node name="Reflector6" parent="Barn" instance=ExtResource("8_ngox1")]
 position = Vector2(-184, -227)
 rotation = 1.5708
 scale = Vector2(1, 20)
 
-[node name="Reflector7" parent="Barn" instance=ExtResource("7_1ewk6")]
+[node name="Reflector7" parent="Barn" instance=ExtResource("8_ngox1")]
 position = Vector2(206, -227)
 rotation = 1.5708
 scale = Vector2(1, 20)

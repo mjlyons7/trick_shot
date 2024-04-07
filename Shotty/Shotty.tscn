@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7a6hy2q0u32n"]
+[gd_scene load_steps=4 format=3 uid="uid://c7a6hy2q0u32n"]
 
 [ext_resource type="Script" path="res://Shotty/Shotty.cs" id="1_fkc7l"]
 [ext_resource type="Texture2D" uid="uid://dlhx8ncvbch6p" path="res://assets/sprites/shotty.png" id="1_lll7u"]
+[ext_resource type="PackedScene" uid="uid://cxh2cpr24nnwx" path="res://Bullet.tscn" id="2_knh2c"]
 
-[node name="Shotty" type="Sprite2D"]
-texture = ExtResource("1_lll7u")
-centered = false
+[node name="Shotty" type="Node2D"]
 script = ExtResource("1_fkc7l")
+bulletScene = ExtResource("2_knh2c")
+
+[node name="ShottySprite" type="Sprite2D" parent="."]
+position = Vector2(40, 14)
+texture = ExtResource("1_lll7u")

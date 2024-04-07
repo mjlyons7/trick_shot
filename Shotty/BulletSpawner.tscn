@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dib67o3no40eb"]
+
+[ext_resource type="Script" path="res://Shotty/BulletSpawner.cs" id="1_466b4"]
+[ext_resource type="PackedScene" uid="uid://cxh2cpr24nnwx" path="res://Bullet.tscn" id="2_amuew"]
+
+[node name="BulletSpawner" type="Node2D"]
+script = ExtResource("1_466b4")
+bulletScene = ExtResource("2_amuew")

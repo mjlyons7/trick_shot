@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3x8qinb8lv8v"]
+
+[ext_resource type="PackedScene" uid="uid://dqr5bwj62dql3" path="res://Reflector.tscn" id="1_p8acw"]
+[ext_resource type="PackedScene" uid="uid://dib67o3no40eb" path="res://Shotty/BulletSpawner.tscn" id="2_oby86"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_m576p"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Reflector" parent="." instance=ExtResource("1_p8acw")]
+position = Vector2(610, 291)
+rotation = -1.5708
+scale = Vector2(1, 20)
+
+[node name="Reflector2" parent="." instance=ExtResource("1_p8acw")]
+position = Vector2(654, 257)
+rotation = 2.35619
+scale = Vector2(1, 20)
+
+[node name="BulletSpawner" parent="." instance=ExtResource("2_oby86")]
+position = Vector2(334, 222)
+rotation = 0.174533
+
+[node name="Sprite2D" type="Sprite2D" parent="BulletSpawner"]
+scale = Vector2(200, 30)
+texture = SubResource("CanvasTexture_m576p")
