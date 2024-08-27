@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 public static class Globals
 {
-    public const bool DEBUG_MODE = true;
+    public static bool DEBUG_ON = false;
+    public static bool PAUSE_ON = false;
 
     // group string names
     // TODO: there's a better way to do this

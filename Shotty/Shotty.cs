@@ -51,7 +51,8 @@ public partial class Shotty : BulletSpawner
 
         // handle inputs
         if (Input.IsActionJustPressed("shoot"))
-            Shoot(Transform);
+            if (!Globals.PAUSE_ON)
+                Shoot(Transform);
 
         // print debug info
         HelperPrint(debugStrings, delta);

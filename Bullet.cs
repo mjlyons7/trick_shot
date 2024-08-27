@@ -21,10 +21,11 @@ public partial class Bullet : Area2D
 
 		// draw ray, for debugging
 		var raySprite = GetNode<Sprite2D>("ray");
-		if (Globals.DEBUG_MODE)
+		if (Globals.DEBUG_ON)
         {
 			raySprite.Scale = new Vector2(rayLength, 2);
 			raySprite.Position = new Vector2(rayLength / 2, 0);
+			lifespan = 60;
         }
         else
         {
@@ -37,8 +38,15 @@ public partial class Bullet : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		// x = x0 + vt
-		Position += ((float)delta * speed) * direction;
+		int speedModifier = 1;
+
+		// low framerate mode, debug menu
+		if (Globals.DEBUG_ON)
+			if (!Input.IsActionJustPressed("debug_advance"))
+				speedModifier = 0;
+
+        // x = x0 + vt
+        Position += ((float)delta * speed * speedModifier) * direction;
 
 		helper.Run(delta);
 

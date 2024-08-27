@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3x8qinb8lv8v"]
+[gd_scene load_steps=5 format=3 uid="uid://b3x8qinb8lv8v"]
 
 [ext_resource type="PackedScene" uid="uid://dqr5bwj62dql3" path="res://Reflector.tscn" id="1_p8acw"]
 [ext_resource type="PackedScene" uid="uid://dib67o3no40eb" path="res://Shotty/BulletSpawner.tscn" id="2_oby86"]
+[ext_resource type="PackedScene" uid="uid://c053uch81yt0d" path="res://TestRooms/TestAssets/DebugMenu.tscn" id="3_hc8hq"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_m576p"]
 
@@ -24,3 +25,5 @@ rotation = 0.174533
 [node name="Sprite2D" type="Sprite2D" parent="BulletSpawner"]
 scale = Vector2(200, 30)
 texture = SubResource("CanvasTexture_m576p")
+
+[node name="DebugMenu" parent="." instance=ExtResource("3_hc8hq")]
