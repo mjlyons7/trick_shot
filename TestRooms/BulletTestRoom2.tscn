@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7b2ab8dpnlwp"]
+
+[ext_resource type="PackedScene" uid="uid://dqr5bwj62dql3" path="res://Reflector.tscn" id="1_uec2c"]
+[ext_resource type="PackedScene" uid="uid://dib67o3no40eb" path="res://Shotty/BulletSpawner.tscn" id="2_o2we1"]
+[ext_resource type="PackedScene" uid="uid://c053uch81yt0d" path="res://TestRooms/TestAssets/DebugMenu.tscn" id="3_hbvck"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_m576p"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Reflector" parent="." instance=ExtResource("1_uec2c")]
+position = Vector2(610, 291)
+rotation = -1.5708
+scale = Vector2(1, 20)
+
+[node name="Reflector2" parent="." instance=ExtResource("1_uec2c")]
+position = Vector2(666, 257)
+rotation = 3.14159
+scale = Vector2(1, 20)
+
+[node name="Reflector3" parent="." instance=ExtResource("1_uec2c")]
+position = Vector2(550, 269)
+rotation = 1.5708
+scale = Vector2(1, 20)
+
+[node name="BulletSpawner" parent="." instance=ExtResource("2_o2we1")]
+modulate = Color(0, 0, 0.607843, 0.490196)
+position = Vector2(648, 280)
+rotation = 1.39626
+
+[node name="Sprite2D" type="Sprite2D" parent="BulletSpawner"]
+scale = Vector2(200, 30)
+texture = SubResource("CanvasTexture_m576p")
+
+[node name="DebugMenu" parent="." instance=ExtResource("3_hbvck")]
