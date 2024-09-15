@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c053uch81yt0d"]
 
-[ext_resource type="Script" path="res://TestRooms/TestAssets/DebugMenu.cs" id="1_kmd3h"]
+[ext_resource type="Script" path="res://Common/DebugMenu.cs" id="1_kmd3h"]
 
 [node name="DebugMenu" type="Node2D"]
 

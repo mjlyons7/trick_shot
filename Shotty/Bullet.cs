@@ -9,6 +9,7 @@ public partial class Bullet : Area2D
     float speed = 1000; // pixels per second
     float lifespan = 5; // seconds
     float distanceToTravel; // per frame
+    float moveTolerance = 0.001f; // Don't want to move right up to surface, because after reflection might be stuck inside it
     Vector2 direction;
 
     Sprite2D raySprite;
@@ -33,6 +34,9 @@ public partial class Bullet : Area2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
+        if (Globals.PAUSE_ON)
+            return;
+
         int speedModifier = 1;
 
         // low framerate mode, debug menu
@@ -68,13 +72,15 @@ public partial class Bullet : Area2D
 
     public override void _PhysicsProcess(double delta)
     {
+        if (Globals.PAUSE_ON)
+            return;
 
         // movement
         int i = 0;
         int maxCollisionsThisFrame = 10;
         while(distanceToTravel > 0 && i < maxCollisionsThisFrame)
         {
-            CheckForCollisions();
+            MoveToNextCollision();
             i++;
         }
 
@@ -90,7 +96,7 @@ public partial class Bullet : Area2D
 
     }
 
-    private void CheckForCollisions()
+    private void MoveToNextCollision()
     {
         // detect collision surface with ray trace
         var spaceState = GetWorld2D().DirectSpaceState;
@@ -113,13 +119,15 @@ public partial class Bullet : Area2D
                     MoveToAndReflectOff(result);
                 else if (collidedNode is IMortal mortal)
                 {
-                    // move up to object, but keep travelling afterwards
-                    Position += distanceToTravel * direction;
+                    // move up to object, but keep travelling same direction afterwards, and travel slightly extra, to get through body
+                    MoveToCollisionSurface(result);
+                    Position += 2 * moveTolerance * direction;
+
                     mortal.OnHit();
                 }
                 else
                 {
-                    Position += distanceToTravel * direction;
+                    MoveToCollisionSurface(result);
                     distanceToTravel = 0;
                     QueueFree();
                 }
@@ -128,7 +136,6 @@ public partial class Bullet : Area2D
         // no collision
         else
         {
-            // TODO: shouldn't have this code 3 times...
             Position += distanceToTravel * direction;
             distanceToTravel = 0;
         }
@@ -137,17 +144,7 @@ public partial class Bullet : Area2D
     // reflect off a surface
     private void MoveToAndReflectOff(Godot.Collections.Dictionary collisionResult)
     {
-        collisionCount += 1;
-        float moveTolerance = 0.001f; // Don't want to move right up to surface, because after reflection might be stuck inside it
-
-        // just for debugging
-        var colliderId = (string)collisionResult["collider_id"];
-
-        // move up to the surface
-        var distanceToCollision = (Position - (Vector2)collisionResult["position"]).Length();
-        Debug.Assert(distanceToCollision <= distanceToTravel);
-        Position += ((distanceToCollision - moveTolerance) * direction);
-        distanceToTravel -= distanceToCollision;
+        MoveToCollisionSurface(collisionResult);
 
         // reflect off
         var colliderNormal = (Vector2)collisionResult["normal"];
@@ -155,5 +152,16 @@ public partial class Bullet : Area2D
 
         Rotation = (float)(Math.PI - Rotation) + (float)(2 * colliderAngle);
         direction = new Vector2((float)Math.Cos(Rotation), (float)Math.Sin(Rotation));
+    }
+
+    private void MoveToCollisionSurface(Godot.Collections.Dictionary collisionResult)
+    {
+        collisionCount += 1;
+
+        // move up to the surface
+        var distanceToCollision = (Position - (Vector2)collisionResult["position"]).Length();
+        Debug.Assert(distanceToCollision <= distanceToTravel, "Collision outside of movement range");
+        Position += ((distanceToCollision - moveTolerance) * direction);
+        distanceToTravel -= distanceToCollision;
     }
 }

@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://s6q7m7w4rpw7"]
 
-[ext_resource type="Script" path="res://Map.cs" id="1_x1uu8"]
+[ext_resource type="Script" path="res://Rooms/Map.cs" id="1_x1uu8"]
 [ext_resource type="Texture2D" uid="uid://b3cy6l137oviy" path="res://assets/sprites/clouds.png" id="3_q6eq3"]
 [ext_resource type="Texture2D" uid="uid://crlicpk51ed3n" path="res://assets/sprites/tilesheet_complete.png" id="4_h2eyw"]
 [ext_resource type="PackedScene" uid="uid://ca8kp46mqdnyd" path="res://player/player.tscn" id="5_yeqos"]
 [ext_resource type="PackedScene" uid="uid://c7a6hy2q0u32n" path="res://Shotty/Shotty.tscn" id="6_80bht"]
-[ext_resource type="PackedScene" uid="uid://b7q15km48c1hs" path="res://Spider.tscn" id="7_a1gdj"]
-[ext_resource type="PackedScene" uid="uid://dqr5bwj62dql3" path="res://Reflector.tscn" id="8_ngox1"]
-[ext_resource type="PackedScene" uid="uid://c053uch81yt0d" path="res://TestRooms/TestAssets/DebugMenu.tscn" id="8_t86pl"]
+[ext_resource type="PackedScene" uid="uid://b7q15km48c1hs" path="res://Actors/Spider.tscn" id="7_a1gdj"]
+[ext_resource type="PackedScene" uid="uid://dqr5bwj62dql3" path="res://Actors/Reflector.tscn" id="8_ngox1"]
+[ext_resource type="PackedScene" uid="uid://c053uch81yt0d" path="res://Common/DebugMenu.tscn" id="8_t86pl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_umrs4"]
 resource_name = "kenney_sample"
@@ -1435,7 +1435,7 @@ position = Vector2(-764, -431)
 position = Vector2(2247, -198)
 
 [node name="Barn" type="Node2D" parent="."]
-position = Vector2(1898, -18)
+position = Vector2(1898, -17)
 
 [node name="Reflector" parent="Barn" instance=ExtResource("8_ngox1")]
 position = Vector2(-378, -216)

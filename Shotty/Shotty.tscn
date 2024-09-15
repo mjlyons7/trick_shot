@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Shotty/Shotty.cs" id="1_fkc7l"]
 [ext_resource type="Texture2D" uid="uid://dlhx8ncvbch6p" path="res://assets/sprites/shotty.png" id="1_lll7u"]
-[ext_resource type="PackedScene" uid="uid://cxh2cpr24nnwx" path="res://Bullet.tscn" id="2_knh2c"]
+[ext_resource type="PackedScene" uid="uid://cxh2cpr24nnwx" path="res://Shotty/Bullet.tscn" id="2_knh2c"]
 
 [node name="Shotty" type="Node2D"]
 script = ExtResource("1_fkc7l")

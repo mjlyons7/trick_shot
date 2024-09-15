@@ -15,11 +15,8 @@ public partial class DebugMenu : PopupMenu
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        // menu is open
-        if (Visible)
-            Globals.PAUSE_ON = true;
-        else
-            Globals.PAUSE_ON = false;
+        // show menu when paused
+        Visible = Globals.PAUSE_ON;
 
         // debug logging
         var strings = new List<string>();

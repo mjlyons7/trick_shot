@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7b2ab8dpnlwp"]
 
-[ext_resource type="PackedScene" uid="uid://dqr5bwj62dql3" path="res://Reflector.tscn" id="1_uec2c"]
+[ext_resource type="PackedScene" uid="uid://dqr5bwj62dql3" path="res://Actors/Reflector.tscn" id="1_uec2c"]
 [ext_resource type="PackedScene" uid="uid://dib67o3no40eb" path="res://Shotty/BulletSpawner.tscn" id="2_o2we1"]
-[ext_resource type="PackedScene" uid="uid://c053uch81yt0d" path="res://TestRooms/TestAssets/DebugMenu.tscn" id="3_hbvck"]
+[ext_resource type="PackedScene" uid="uid://c053uch81yt0d" path="res://Common/DebugMenu.tscn" id="3_hbvck"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_m576p"]
 

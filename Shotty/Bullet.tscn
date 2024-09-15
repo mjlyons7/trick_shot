@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cxh2cpr24nnwx"]
 
-[ext_resource type="Script" path="res://Bullet.cs" id="1_dqhlm"]
+[ext_resource type="Script" path="res://Shotty/Bullet.cs" id="1_dqhlm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2gnvl"]
 

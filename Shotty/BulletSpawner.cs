@@ -15,9 +15,11 @@ public partial class BulletSpawner : Node2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
+        if (Globals.PAUSE_ON)
+            return;
+
         if (Input.IsActionJustPressed("shoot"))
-            if (!Globals.PAUSE_ON)
-                Shoot(Transform);
+            Shoot(Transform);
     }
 
     protected void Shoot(Transform2D bulletGlobalTransform)

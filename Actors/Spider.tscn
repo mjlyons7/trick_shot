@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b7q15km48c1hs"]
 
-[ext_resource type="Script" path="res://Spider.cs" id="1_7a35s"]
+[ext_resource type="Script" path="res://Actors/Spider.cs" id="1_7a35s"]
 [ext_resource type="Texture2D" uid="uid://ro1kv8e487e4" path="res://assets/sprites/spider1.png" id="1_06101"]
 [ext_resource type="Texture2D" uid="uid://bavtllvtyahoe" path="res://assets/sprites/spider2.png" id="2_uapff"]
 

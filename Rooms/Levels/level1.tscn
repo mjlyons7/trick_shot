@@ -1,16 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://7j7wb0j50ooc"]
+[gd_scene load_steps=11 format=3 uid="uid://k2yr5wacaiwt"]
 
-[ext_resource type="Script" path="res://Map.cs" id="1_c785q"]
-[ext_resource type="Texture2D" uid="uid://b3cy6l137oviy" path="res://assets/sprites/clouds.png" id="3_kev06"]
-[ext_resource type="Texture2D" uid="uid://crlicpk51ed3n" path="res://assets/sprites/tilesheet_complete.png" id="4_6wqy2"]
-[ext_resource type="PackedScene" uid="uid://ca8kp46mqdnyd" path="res://player/player.tscn" id="5_nrxhe"]
-[ext_resource type="PackedScene" uid="uid://c7a6hy2q0u32n" path="res://Shotty/Shotty.tscn" id="6_eolgp"]
-[ext_resource type="PackedScene" uid="uid://dqr5bwj62dql3" path="res://Reflector.tscn" id="7_bar7p"]
-[ext_resource type="PackedScene" uid="uid://b7q15km48c1hs" path="res://Spider.tscn" id="8_mi3fy"]
+[ext_resource type="Script" path="res://Rooms/Map.cs" id="1_3cqni"]
+[ext_resource type="Texture2D" uid="uid://b3cy6l137oviy" path="res://assets/sprites/clouds.png" id="2_4h0he"]
+[ext_resource type="Texture2D" uid="uid://crlicpk51ed3n" path="res://assets/sprites/tilesheet_complete.png" id="3_3eeaj"]
+[ext_resource type="PackedScene" uid="uid://ca8kp46mqdnyd" path="res://player/player.tscn" id="4_w877u"]
+[ext_resource type="PackedScene" uid="uid://c053uch81yt0d" path="res://Common/DebugMenu.tscn" id="5_yaf8i"]
+[ext_resource type="PackedScene" uid="uid://c7a6hy2q0u32n" path="res://Shotty/Shotty.tscn" id="6_wx4jp"]
+[ext_resource type="PackedScene" uid="uid://b7q15km48c1hs" path="res://Actors/Spider.tscn" id="7_oqdg5"]
+[ext_resource type="PackedScene" uid="uid://dqr5bwj62dql3" path="res://Actors/Reflector.tscn" id="8_irr1k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_umrs4"]
 resource_name = "kenney_sample"
-texture = ExtResource("4_6wqy2")
+texture = ExtResource("3_3eeaj")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1396,9 +1397,9 @@ physics_layer_1/collision_mask = 2
 sources/1 = SubResource("TileSetAtlasSource_umrs4")
 
 [node name="TestRoom" type="Node2D"]
-script = ExtResource("1_c785q")
-metadata/_edit_horizontal_guides_ = []
-metadata/_edit_vertical_guides_ = []
+script = ExtResource("1_3cqni")
+metadata/_edit_horizontal_guides_ = [-361.0]
+metadata/_edit_vertical_guides_ = [-361.0]
 
 [node name="SkyBackground" type="ParallaxBackground" parent="."]
 
@@ -1408,7 +1409,7 @@ motion_mirroring = Vector2(2048, 2048)
 
 [node name="Clouds" type="Sprite2D" parent="SkyBackground/ParallaxLayer"]
 texture_repeat = 2
-texture = ExtResource("3_kev06")
+texture = ExtResource("2_4h0he")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 2048, 2048)
@@ -1416,50 +1417,52 @@ region_rect = Rect2(0, 0, 2048, 2048)
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_2oad6")
 format = 2
-layer_0/tile_data = PackedInt32Array(131072, 131073, 9, 131073, 131073, 9, 131074, 131073, 9, 131075, 131073, 9, 65540, 65537, 10, 5, 65537, 10, 131076, 65537, 11, 65541, 65537, 11, 6, 131073, 9, 65542, 1, 9, 131078, 1, 9, 131077, 1, 9, 7, 131073, 9, 8, 131073, 9, 9, 131073, 9, 10, 131073, 10, 65547, 131073, 10, 131084, 131073, 10, 65546, 131073, 11, 131083, 131073, 11, 65543, 1, 9, 65544, 1, 9, 65545, 1, 9, 131081, 1, 9, 131082, 1, 9, 131080, 1, 9, 196621, 131073, 9, 196620, 131073, 11, 196619, 1, 9, 196618, 1, 9, 196617, 1, 9, 196616, 1, 9, 196615, 1, 9, 131079, 1, 9, 196614, 1, 9, 196613, 1, 9, 196612, 1, 9, 196611, 1, 9, 196610, 1, 9, 196609, 1, 9, 196608, 1, 9, 262157, 1, 9, 262156, 1, 9, 262155, 1, 9, 262154, 1, 9, 262153, 1, 9, 262152, 1, 9, 262151, 1, 9, 262150, 1, 9, 262149, 1, 9, 262148, 1, 9, 262147, 1, 9, 262146, 1, 9, 262145, 1, 9, 262144, 1, 9, 196622, 131073, 9, 196623, 1, 9, 196624, 1, 9, 196625, 131073, 9, 196626, 131073, 9, 196627, 131073, 9, 196628, 131073, 9, 196629, 1, 9, 196630, 131073, 9, 196631, 1, 9, 196632, 1, 9, 196633, 131073, 9, 196634, 131073, 9, 131087, 131073, 9, 131088, 131073, 9, 131093, 131073, 9, 131095, 1, 9, 65560, 131073, 9, 65559, 131073, 9, 131096, 1, 9, 262158, 1, 9, 262159, 1, 9, 262160, 1, 9, 262161, 1, 9, 262162, 1, 9, 262169, 1, 9, 262170, 1, 9, 262168, 1, 9, 262167, 1, 9, 262166, 1, 9, 262165, 1, 9, 262164, 1, 9, 262163, 1, 9, 262171, 1, 9, 30, 131073, 9, 65566, 1, 9, 131102, 1, 9, 196638, 1, 9, 262174, 1, 9, 262173, 1, 9, 262172, 1, 9, 196635, 131073, 9, 196636, 131073, 9, 196637, 131073, 9, 65535, 131073, 9, 131071, 1, 9, 196607, 1, 9, 262143, 1, 9, 327679, 1, 9, -655320, 1, 9, -589784, 1, 9, -524248, 1, 9, -458712, 1, 9, -393176, 1, 9, -327640, 1, 9, -262104, 1, 9, -196567, 1, 9, -131031, 1, 9, -65495, 1, 9, 41, 1, 9, 65577, 1, 9, 131113, 1, 9, 196649, 1, 9, 262185, 1, 9, 327721, 1, 9, 393257, 1, 9, 458793, 1, 9, 524329, 1, 9, 589865, 1, 9, 589864, 1, 9, 655400, 1, 9, 720936, 1, 9, 786472, 1, 9, 852007, 1, 9, 852006, 1, 9, 852005, 1, 9, 917540, 1, 9, 917539, 1, 9, 917538, 1, 9, 917537, 1, 9, 917536, 1, 9, 917535, 1, 9, 917534, 1, 9, 917533, 1, 9, 917532, 1, 9, 917531, 1, 9, 917530, 1, 9, 917529, 1, 9, 917528, 1, 9, 917527, 1, 9, 917526, 1, 9, 917525, 1, 9, 917524, 1, 9, 917523, 1, 9, 917522, 1, 9, 917521, 1, 9, 917520, 1, 9, 917519, 1, 9, 917518, 1, 9, 917517, 1, 9, 917516, 1, 9, 917515, 1, 9, 917514, 1, 9, 917513, 1, 9, 917512, 1, 9, 917511, 1, 9, 917510, 1, 9, 917509, 1, 9, 917508, 1, 9, 917507, 1, 9, 917506, 1, 9, 917505, 1, 9, 917504, 1, 9, 983039, 1, 9, 983038, 1, 9, 983037, 1, 9, 983036, 1, 9, 983035, 1, 9, 983034, 1, 9, 983033, 1, 9, 983032, 1, 9, 983031, 1, 9, 983030, 1, 9, 983027, 1, 9, 917491, 1, 9, 851954, 1, 9, 851953, 1, 9, 786417, 1, 9, 720881, 1, 9, 655344, 1, 9, 589808, 1, 9, 524272, 1, 9, 458735, 1, 9, 393199, 1, 9, 327662, 1, 9, 262126, 1, 9, 196590, 1, 9, 131053, 1, 9, 65517, 1, 9, -19, 1, 9, -65555, 1, 9, -131091, 1, 9, -196627, 1, 9, -262163, 1, 9, -327699, 1, 9, -393235, 1, 9, -458771, 1, 9, -524308, 1, 9, -589844, 1, 9, -655380, 1, 9, -720915, 1, 9, -786450, 1, 9, -851985, 1, 9, -851984, 1, 9, -917519, 1, 9, -917518, 1, 9, -917517, 1, 9, -983052, 1, 9, -983051, 1, 9, -983050, 1, 9, -983049, 1, 9, -983048, 1, 9, -983047, 1, 9, -983046, 1, 9, -983045, 1, 9, -983044, 1, 9, -983043, 1, 9, -983042, 1, 9, -917505, 1, 9, -983040, 1, 9, -983039, 1, 9, -983038, 1, 9, -983037, 1, 9, -983036, 1, 9, -983035, 1, 9, -983034, 1, 9, -983033, 1, 9, -983032, 1, 9, -983031, 1, 9, -983030, 1, 9, -983029, 1, 9, -983028, 1, 9, -983027, 1, 9, -983026, 1, 9, -983025, 1, 9, -983024, 1, 9, -983023, 1, 9, -983022, 1, 9, -983021, 1, 9, -983020, 1, 9, -983019, 1, 9, -983018, 1, 9, -983017, 1, 9, -983016, 1, 9, -983015, 1, 9, -983014, 1, 9, -983013, 1, 9, -983012, 1, 9, -983011, 1, 9, -917474, 1, 9, -917473, 1, 9, -917472, 1, 9, -917471, 1, 9, -917470, 1, 9, -917469, 1, 9, -917468, 1, 9, -917467, 1, 9, -851931, 1, 9, -851930, 1, 9, -786394, 1, 9, -786393, 1, 9, -786392, 1, 9, -720856, 1, 9)
+layer_0/tile_data = PackedInt32Array(196606, 131073, 9, 196607, 131073, 9, 131072, 131073, 9, 131073, 131073, 9, 131074, 131073, 9, 131075, 131073, 9, 131076, 131073, 9, 131077, 131073, 9, 131078, 131073, 9, 131079, 131073, 9, 131080, 131073, 9, 131081, 131073, 9, 131082, 131073, 9, 131083, 131073, 9, 131084, 131073, 9, 131085, 131073, 9, 131086, 131073, 9, 131087, 131073, 9, 131088, 131073, 9, 131089, 131073, 9, 131090, 131073, 9, 131091, 131073, 9, 131092, 131073, 9, 131093, 131073, 9, 131094, 131073, 9, 131095, 131073, 9, 131096, 131073, 9, 131097, 131073, 9, 131098, 131073, 9, 131099, 131073, 9, 131100, 131073, 9, 131101, 131073, 9, 131104, 131073, 9, 131102, 131073, 9, 131103, 131073, 9, 131105, 131073, 9, 131106, 131073, 9, 131107, 131073, 9, 262142, 1, 9, 262143, 1, 9, 196608, 1, 9, 196609, 1, 9, 196610, 1, 9, 196611, 1, 9, 196612, 1, 9, 196613, 1, 9, 196614, 1, 9, 196615, 1, 9, 196616, 1, 9, 196617, 1, 9, 196618, 1, 9, 196619, 1, 9, 196620, 1, 9, 196621, 1, 9, 196622, 1, 9, 196623, 1, 9, 196624, 1, 9, 196625, 1, 9, 196626, 1, 9, 196627, 1, 9, 196628, 1, 9, 196629, 1, 9, 196630, 1, 9, 196631, 1, 9, 196632, 1, 9, 196633, 1, 9, 196634, 1, 9, 196635, 1, 9, 196636, 1, 9, 196637, 1, 9, 196638, 1, 9, 196639, 1, 9, 196640, 1, 9, 196641, 1, 9, 196642, 1, 9, 196643, 1, 9)
 
-[node name="Player" parent="." instance=ExtResource("5_nrxhe")]
+[node name="Player" parent="." instance=ExtResource("4_w877u")]
 position = Vector2(125, 42)
 floor_max_angle = 0.872665
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.75, 0.75)
 
-[node name="Shotty" parent="." instance=ExtResource("6_eolgp")]
+[node name="DebugMenu" parent="Player/Camera2D" instance=ExtResource("5_yaf8i")]
+position = Vector2(-764, -431)
 
-[node name="Reflector" parent="." instance=ExtResource("7_bar7p")]
-position = Vector2(1013, -225)
+[node name="Shotty" parent="." instance=ExtResource("6_wx4jp")]
+
+[node name="Spider" parent="." instance=ExtResource("7_oqdg5")]
+position = Vector2(2245, -199)
+
+[node name="Barn" type="Node2D" parent="."]
+position = Vector2(1898, -17)
+
+[node name="Reflector" parent="Barn" instance=ExtResource("8_irr1k")]
+position = Vector2(-378, -216)
 rotation = 3.14159
 scale = Vector2(1, 20)
 
-[node name="Reflector2" parent="." instance=ExtResource("7_bar7p")]
-position = Vector2(1072, -374)
-rotation = 0.785398
+[node name="Reflector2" parent="Barn" instance=ExtResource("8_irr1k")]
+position = Vector2(397, -36)
+rotation = 3.14159
 scale = Vector2(1, 20)
-skew = 5.05447e-05
 
-[node name="Reflector3" parent="." instance=ExtResource("7_bar7p")]
-position = Vector2(1331, -470)
+[node name="Reflector4" parent="Barn" instance=ExtResource("8_irr1k")]
+position = Vector2(-184, 155)
 rotation = 1.5708
 scale = Vector2(1, 20)
-skew = 5.05447e-05
 
-[node name="Reflector4" parent="." instance=ExtResource("7_bar7p")]
-position = Vector2(1718, -470)
+[node name="Reflector5" parent="Barn" instance=ExtResource("8_irr1k")]
+position = Vector2(206, 155)
 rotation = 1.5708
 scale = Vector2(1, 20)
-skew = 5.05447e-05
 
-[node name="Reflector5" parent="." instance=ExtResource("7_bar7p")]
-position = Vector2(1938, -401)
-rotation = 2.35619
+[node name="Reflector6" parent="Barn" instance=ExtResource("8_irr1k")]
+position = Vector2(-184, -227)
+rotation = 1.5708
 scale = Vector2(1, 20)
-skew = 5.05447e-05
 
-[node name="Reflector6" parent="." instance=ExtResource("7_bar7p")]
-position = Vector2(56, -62)
+[node name="Reflector7" parent="Barn" instance=ExtResource("8_irr1k")]
+position = Vector2(206, -227)
+rotation = 1.5708
 scale = Vector2(1, 20)
-skew = 5.05447e-05
-
-[node name="Spider" parent="." instance=ExtResource("8_mi3fy")]
-position = Vector2(1897, -105)

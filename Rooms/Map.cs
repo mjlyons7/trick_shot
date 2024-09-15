@@ -15,5 +15,9 @@ public partial class Map : Node2D
     {
         if (Input.IsActionJustPressed("reset"))
             GetTree().ReloadCurrentScene();
+        // toggle pause
+        else if (Input.IsActionJustPressed("pause"))
+            Globals.PAUSE_ON = !Globals.PAUSE_ON;
+
     }
 }
