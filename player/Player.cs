@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 public partial class Player : CharacterBody2D, IMortal
 {
+    [Export]
+    PackedScene BloodSpawnerScene;
+
     int _hitPoints = 1;
     public int HitPoints
     {
@@ -35,6 +38,8 @@ public partial class Player : CharacterBody2D, IMortal
         projectGravity = (double) ProjectSettings.GetSetting("physics/2d/default_gravity");
         playerSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         playerSprite.Animation = "walk";
+
+        
         playerState = PlayerState.IDLE;
 
         helper = new DebugHelper();
@@ -57,7 +62,7 @@ public partial class Player : CharacterBody2D, IMortal
                 RunAndJump(delta);
                 break;
             case PlayerState.DEAD:
-                // TODO: ragdoll
+                // TODO: ?? some kind of death animation
                 break;
         }
 
@@ -75,7 +80,7 @@ public partial class Player : CharacterBody2D, IMortal
     {
         MoveAndSlide();
 
-        // TODO: check if on the ground
+        // TODO: check if on the ground with ray tracing
     }
 
     private void Pause()
@@ -143,10 +148,28 @@ public partial class Player : CharacterBody2D, IMortal
     }
 
     #region IMortal Overrides
+    public void OnHit(Vector2 hitPosition, Vector2 hitDirection)
+    {
+        HitPoints--;
+        if ((HitPoints < 1) && (playerState != PlayerState.DEAD))
+        {
+            Die();
+        }
+
+        if (playerState == PlayerState.DEAD)
+        {
+            var bloodSpawner = BloodSpawnerScene.Instantiate<BloodSpawner>();
+            bloodSpawner.Position = hitPosition - GlobalPosition;
+            var hitAngle = (float)Math.Atan2((double)hitDirection[1], (double)hitDirection[0]);
+            bloodSpawner.Rotate(hitAngle + (float)Math.PI);
+            AddChild(bloodSpawner);
+        }
+    }
+
     public void Die()
     {
         playerState = PlayerState.DEAD;
-        Visible = false;
+        Velocity = new Vector2(0, 0);
     }
     #endregion
 }

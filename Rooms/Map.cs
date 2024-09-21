@@ -16,6 +16,7 @@ public partial class Map : Node2D
         if (Input.IsActionJustPressed("reset"))
             GetTree().ReloadCurrentScene();
         // toggle pause
+        // TODO: GetTree().Paused = true;
         else if (Input.IsActionJustPressed("pause"))
             Globals.PAUSE_ON = !Globals.PAUSE_ON;
 

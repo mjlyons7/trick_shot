@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ca8kp46mqdnyd"]
+[gd_scene load_steps=7 format=3 uid="uid://ca8kp46mqdnyd"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_dbdpr"]
 [ext_resource type="Texture2D" uid="uid://dqdy66w8o2yur" path="res://assets/sprites/mah-boi1.png" id="2_s2387"]
+[ext_resource type="PackedScene" uid="uid://cxo4iivofsfl" path="res://Effects/BloodSpawner.tscn" id="2_unl2h"]
 [ext_resource type="Texture2D" uid="uid://clw20d5co7ri5" path="res://assets/sprites/mah-boi2.png" id="3_2v4mb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vu8yo"]
@@ -22,7 +23,9 @@ animations = [{
 size = Vector2(36, 93.5)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_dbdpr")
+BloodSpawnerScene = ExtResource("2_unl2h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vu8yo")

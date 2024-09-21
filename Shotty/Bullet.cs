@@ -6,7 +6,7 @@ using System.Linq;
 
 public partial class Bullet : Area2D
 {
-    float speed = 1000; // pixels per second
+    float speed = 3000; // pixels per second
     float lifespan = 5; // seconds
     float distanceToTravel; // per frame
     float moveTolerance = 0.001f; // Don't want to move right up to surface, because after reflection might be stuck inside it
@@ -98,39 +98,56 @@ public partial class Bullet : Area2D
 
     private void MoveToNextCollision()
     {
-        // detect collision surface with ray trace
+        // ray trace
         var spaceState = GetWorld2D().DirectSpaceState;
         var from = Position;
         var to = Position + (direction.Normalized() * distanceToTravel);
         var query = PhysicsRayQueryParameters2D.Create(from, to);
         var result = spaceState.IntersectRay(query);
+
+        // move to next surface, and either move through, reflect off, or despawn
         if (result.Count > 0)
         {
             StringName reflectorGroupName = new StringName(Globals.GROUP_REFLECTORS);
 
             var collidedNode = result["collider"].As<Node>();
+            Debug.Assert(collidedNode is not null, "Collision with null");
 
-            if (collidedNode is not null)
+            var collidedObject2d = collidedNode as CollisionObject2D;
+            if (collidedObject2d is not null)
             {
-                var collidedGroupNames = collidedNode.GetGroups();
-
-                // decide what to do based on object collided with. Default case is despawn
-                if (collidedGroupNames.Contains(reflectorGroupName))
+                var collidedGroupNames = collidedObject2d.GetGroups();
+                
+                // 1 is general objects, 2 is player
+                if (collidedObject2d.CollisionLayer > 2)
+                {
+                    MoveToCollisionSurface(result);
+                    Position += 2 * moveTolerance * direction;
+                }
+                else if (collidedGroupNames.Contains(reflectorGroupName))
                     MoveToAndReflectOff(result);
-                else if (collidedNode is IMortal mortal)
+                else if (collidedObject2d is IMortal mortal)
                 {
                     // move up to object, but keep travelling same direction afterwards, and travel slightly extra, to get through body
                     MoveToCollisionSurface(result);
                     Position += 2 * moveTolerance * direction;
 
-                    mortal.OnHit();
+                    mortal.OnHit(Position, direction);
                 }
                 else
                 {
+                    // TODO: is some other kind of solid object, so move to it and despawn
                     MoveToCollisionSurface(result);
                     distanceToTravel = 0;
                     QueueFree();
                 }
+            }
+            else
+            {
+                // TODO: doesn't have a collision object, but can still collide with it. So I think that's only tilemaps? So it's the ground, so despawn
+                MoveToCollisionSurface(result);
+                distanceToTravel = 0;
+                QueueFree();
             }
         }
         // no collision

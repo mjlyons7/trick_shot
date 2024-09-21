@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Godot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ public interface IMortal
 {
     int HitPoints { get; set; }
 
-    void OnHit()
+    void OnHit(Vector2 hitPosition, Vector2 hitDirection)
     {
         HitPoints--;
         if (HitPoints < 1)

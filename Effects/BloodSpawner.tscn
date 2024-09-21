@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxo4iivofsfl"]
+
+[ext_resource type="Script" path="res://Effects/BloodSpawner.cs" id="1_oxjio"]
+[ext_resource type="PackedScene" uid="uid://demt1os5laweb" path="res://Effects/BloodDrop.tscn" id="2_yw2j5"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5d8ws"]
+
+[node name="BloodSpawner" type="Node2D"]
+script = ExtResource("1_oxjio")
+bloodDropScene = ExtResource("2_yw2j5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(50, 50)
+texture = SubResource("CanvasTexture_5d8ws")
