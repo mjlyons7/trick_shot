@@ -118,7 +118,7 @@ public partial class Bullet : Area2D
             {
                 var collidedGroupNames = collidedObject2d.GetGroups();
                 
-                // 1 is general objects, 2 is player
+                // if not 1 or 2, don't hit, move through
                 if (collidedObject2d.CollisionLayer > 2)
                 {
                     MoveToCollisionSurface(result);

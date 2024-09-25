@@ -23,6 +23,10 @@ public partial class Player : CharacterBody2D, IMortal
     double initialJumpVelocity = 1e3;
     double projectGravity;
     double gravityMultiplier = 2e0;
+    Vector2 deathHitDirection;
+
+    double timeDead;
+    bool fallenOver;
 
     Vector2 prevVelocity;
     PlayerState prevPlayerState;
@@ -59,10 +63,12 @@ public partial class Player : CharacterBody2D, IMortal
         switch (playerState)
         {
             case PlayerState.IDLE:
+                timeDead = 0;
                 RunAndJump(delta);
                 break;
             case PlayerState.DEAD:
-                // TODO: ?? some kind of death animation
+                timeDead += delta;
+                FallOverAndDie();
                 break;
         }
 
@@ -80,7 +86,7 @@ public partial class Player : CharacterBody2D, IMortal
     {
         MoveAndSlide();
 
-        // TODO: check if on the ground with ray tracing
+        // TODO: check if on the ground with ray tracing?
     }
 
     private void Pause()
@@ -147,12 +153,33 @@ public partial class Player : CharacterBody2D, IMortal
             playerSprite.Stop();
     }
 
+    private void FallOverAndDie()
+    {
+        Debug.Assert(deathHitDirection.LengthSquared() != 0, "death hit direction was not set");
+
+        // TODO:
+        double fallOverTime = 1;
+        if ((fallOverTime < timeDead) && (!fallenOver))
+        {
+            // rotate so the blood spews into the air, cuz it's funnier that way
+            if (deathHitDirection.X < 0)
+                Rotation += (float)-Math.PI/2;
+            else
+                Rotation += (float)Math.PI / 2;
+            fallenOver = true;
+        }
+
+        // animation
+        playerSprite.Animation = "dead";
+    }
+
     #region IMortal Overrides
     public void OnHit(Vector2 hitPosition, Vector2 hitDirection)
     {
         HitPoints--;
         if ((HitPoints < 1) && (playerState != PlayerState.DEAD))
         {
+            deathHitDirection = hitDirection;
             Die();
         }
 
@@ -162,6 +189,13 @@ public partial class Player : CharacterBody2D, IMortal
             bloodSpawner.Position = hitPosition - GlobalPosition;
             var hitAngle = (float)Math.Atan2((double)hitDirection[1], (double)hitDirection[0]);
             bloodSpawner.Rotate(hitAngle + (float)Math.PI);
+
+            // player has maybe rotated, so need to translate based on this rotation
+            var bsMagnitude = bloodSpawner.Position.Length();
+            var bsAngle = Math.Atan2((double)bloodSpawner.Position.Y, (double)bloodSpawner.Position.X);
+            bloodSpawner.Position = new Vector2((float)(bsMagnitude * Math.Cos(bsAngle - (double)GlobalRotation)), (float)(bsMagnitude * Math.Sin((double)bsAngle - (double)GlobalRotation)));
+            bloodSpawner.Rotate(-Rotation);
+
             AddChild(bloodSpawner);
         }
     }
