@@ -8,6 +8,7 @@ public partial class Map : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,7 +19,11 @@ public partial class Map : Node2D
         // toggle pause
         // TODO: GetTree().Paused = true;
         else if (Input.IsActionJustPressed("pause"))
-            Globals.PAUSE_ON = !Globals.PAUSE_ON;
-
+        {
+            var tree = GetTree();
+            tree.Paused = !tree.Paused;
+            Globals.PAUSE_ON = tree.Paused;
+        }
+        
     }
 }

@@ -28,10 +28,8 @@ public partial class Player : CharacterBody2D, IMortal
     double timeDead;
     bool fallenOver;
 
-    Vector2 prevVelocity;
-    PlayerState prevPlayerState;
-
     AnimatedSprite2D playerSprite;
+    CollisionShape2D playerCollisionShape;
     DebugHelper helper;
 
     PlayerState playerState;
@@ -41,6 +39,7 @@ public partial class Player : CharacterBody2D, IMortal
     {
         projectGravity = (double) ProjectSettings.GetSetting("physics/2d/default_gravity");
         playerSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        playerCollisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
         playerSprite.Animation = "walk";
 
         
@@ -54,11 +53,6 @@ public partial class Player : CharacterBody2D, IMortal
     {
         // todo: figure out a better logging system
         helper.Run(delta);
-
-        if (Globals.PAUSE_ON)
-            Pause();
-        else if (playerState == PlayerState.PAUSED)
-            Unpause();
 
         switch (playerState)
         {
@@ -87,28 +81,6 @@ public partial class Player : CharacterBody2D, IMortal
         MoveAndSlide();
 
         // TODO: check if on the ground with ray tracing?
-    }
-
-    private void Pause()
-    {
-        if (playerState == PlayerState.PAUSED)
-            return;
-
-        prevVelocity = Velocity;
-        Velocity = new Vector2(0, 0);
-
-        prevPlayerState = playerState;
-        playerState = PlayerState.PAUSED;
-
-        playerSprite.Pause();
-    }
-
-    private void Unpause()
-    {
-        Debug.Assert(playerState == PlayerState.PAUSED, "Unpause called, but player is already unpaused");
-
-        Velocity = prevVelocity;
-        playerState = prevPlayerState;
     }
 
     private void RunAndJump(double delta)
@@ -161,6 +133,15 @@ public partial class Player : CharacterBody2D, IMortal
         double fallOverTime = 1;
         if ((fallOverTime < timeDead) && (!fallenOver))
         {
+            // move to the ground
+            // TODO: this assumes player has no rotation, and have rectangular collision box
+            var collisionBox = (playerCollisionShape.Shape) as RectangleShape2D;
+            if (collisionBox is not null)
+            {
+                var distanceToGroundAfterRotation = (collisionBox.Size[1] - collisionBox.Size[0]) / 2;
+                Position = new Vector2(Position.X, Position.Y + distanceToGroundAfterRotation);
+            }
+
             // rotate so the blood spews into the air, cuz it's funnier that way
             if (deathHitDirection.X < 0)
                 Rotation += (float)-Math.PI/2;
@@ -185,6 +166,7 @@ public partial class Player : CharacterBody2D, IMortal
 
         if (playerState == PlayerState.DEAD)
         {
+            // TODO: could clean up this math a bit, make it simpler
             var bloodSpawner = BloodSpawnerScene.Instantiate<BloodSpawner>();
             bloodSpawner.Position = hitPosition - GlobalPosition;
             var hitAngle = (float)Math.Atan2((double)hitDirection[1], (double)hitDirection[0]);

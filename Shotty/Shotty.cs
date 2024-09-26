@@ -26,9 +26,6 @@ public partial class Shotty : BulletSpawner
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        if (Globals.PAUSE_ON)
-            return;
-
         helper.Run(delta);
         var debugStrings = new List<string>();
 
@@ -54,8 +51,7 @@ public partial class Shotty : BulletSpawner
 
         // handle inputs
         if (Input.IsActionJustPressed("shoot"))
-            if (!Globals.PAUSE_ON)
-                Shoot(Transform);
+            Shoot(Transform);
 
         // print debug info
         HelperPrint(debugStrings, delta);

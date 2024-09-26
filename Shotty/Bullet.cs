@@ -34,9 +34,6 @@ public partial class Bullet : Area2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        if (Globals.PAUSE_ON)
-            return;
-
         int speedModifier = 1;
 
         // low framerate mode, debug menu
@@ -72,9 +69,6 @@ public partial class Bullet : Area2D
 
     public override void _PhysicsProcess(double delta)
     {
-        if (Globals.PAUSE_ON)
-            return;
-
         // movement
         int i = 0;
         int maxCollisionsThisFrame = 10;

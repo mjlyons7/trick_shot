@@ -10,6 +10,7 @@ public partial class DebugMenu : PopupMenu
     public override void _Ready()
     {
         helper = new DebugHelper();
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,14 +19,6 @@ public partial class DebugMenu : PopupMenu
         // show menu when paused
         Visible = Globals.PAUSE_ON;
 
-        // debug logging
-        var strings = new List<string>();
-        if (Globals.PAUSE_ON)
-            strings.Add("Game is paused");
-        if (Globals.DEBUG_ON)
-            strings.Add("DEBUG MODE ON");
-
-        helper.PrintAfterInterval(strings);
         helper.Run(delta);
     }
 

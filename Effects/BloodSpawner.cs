@@ -23,9 +23,6 @@ public partial class BloodSpawner : Node2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        if (Globals.PAUSE_ON)
-            return;
-
         runtime += delta;
         timeSinceLastDrop += delta;
 
