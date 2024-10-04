@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://s6q7m7w4rpw7"]
+[gd_scene load_steps=12 format=3 uid="uid://s6q7m7w4rpw7"]
 
 [ext_resource type="Script" path="res://Rooms/Map.cs" id="1_x1uu8"]
 [ext_resource type="Texture2D" uid="uid://b3cy6l137oviy" path="res://assets/sprites/clouds.png" id="3_q6eq3"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b7q15km48c1hs" path="res://Actors/Spider.tscn" id="7_a1gdj"]
 [ext_resource type="PackedScene" uid="uid://dqr5bwj62dql3" path="res://Actors/Reflector.tscn" id="8_ngox1"]
 [ext_resource type="PackedScene" uid="uid://c053uch81yt0d" path="res://Common/DebugMenu.tscn" id="8_t86pl"]
+[ext_resource type="PackedScene" uid="uid://fci1014ky14v" path="res://Effects/Sign.tscn" id="9_bb6sg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_umrs4"]
 resource_name = "kenney_sample"
@@ -1403,6 +1404,9 @@ metadata/_edit_vertical_guides_ = [-361.0]
 
 [node name="pausable" type="Node2D" parent="."]
 process_mode = 1
+
+[node name="Sign" parent="pausable" instance=ExtResource("9_bb6sg")]
+position = Vector2(476, 97)
 
 [node name="TileMap" type="TileMap" parent="pausable"]
 tile_set = SubResource("TileSet_2oad6")

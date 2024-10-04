@@ -50,7 +50,7 @@ public partial class Shotty : BulletSpawner
         }
 
         // handle inputs
-        if (Input.IsActionJustPressed("shoot"))
+        if (Input.IsActionJustPressed("click"))
             Shoot(Transform);
 
         // print debug info

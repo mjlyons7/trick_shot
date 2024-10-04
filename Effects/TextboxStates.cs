@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-internal enum PlayerState
+internal enum TextboxStates
 {
-    PAUSED,
-    IDLE,
-    DEAD
+    READY,
+    READING,
+    FINISHED
 }

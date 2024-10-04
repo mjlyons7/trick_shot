@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://bys2xahds6538"]
+
+[ext_resource type="Script" path="res://Effects/Textbox.cs" id="1_o0ntk"]
+[ext_resource type="FontFile" uid="uid://cylkbpoen4jai" path="res://assets/Fonts/OpenSans-VariableFont_wdth,wght.ttf" id="2_utamn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ex6a"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[node name="Textbox" type="CanvasLayer"]
+script = ExtResource("1_o0ntk")
+
+[node name="TextBoxContainer" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -196.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Panel" type="Panel" parent="TextBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2ex6a")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Panel" type="Panel" parent="TextBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="StartSymbol" type="Label" parent="TextBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_utamn")
+theme_override_font_sizes/font_size = 36
+text = "*"
+
+[node name="Label" type="Label" parent="TextBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_utamn")
+theme_override_font_sizes/font_size = 36
+text = "I AM ERROR"
+autowrap_mode = 3
+clip_text = true
+
+[node name="EndSymbol" type="Label" parent="TextBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 36
+text = "V"
+vertical_alignment = 2

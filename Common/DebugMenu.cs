@@ -40,7 +40,7 @@ public partial class DebugMenu : PopupMenu
     // ---- private ---
     private void ToggleDebugMode(int id)
     {
-        // todo: toggle checkbox on and off
+        // toggle checkbox on and off
         if (Globals.DEBUG_ON)
         {
             Globals.DEBUG_ON = false;

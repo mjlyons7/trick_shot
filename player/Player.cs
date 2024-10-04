@@ -32,7 +32,7 @@ public partial class Player : CharacterBody2D, IMortal
     CollisionShape2D playerCollisionShape;
     DebugHelper helper;
 
-    PlayerState playerState;
+    PlayerStates playerState;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -43,7 +43,7 @@ public partial class Player : CharacterBody2D, IMortal
         playerSprite.Animation = "walk";
 
         
-        playerState = PlayerState.IDLE;
+        playerState = PlayerStates.IDLE;
 
         helper = new DebugHelper();
     }
@@ -56,11 +56,11 @@ public partial class Player : CharacterBody2D, IMortal
 
         switch (playerState)
         {
-            case PlayerState.IDLE:
+            case PlayerStates.IDLE:
                 timeDead = 0;
                 RunAndJump(delta);
                 break;
-            case PlayerState.DEAD:
+            case PlayerStates.DEAD:
                 timeDead += delta;
                 FallOverAndDie();
                 break;
@@ -158,13 +158,13 @@ public partial class Player : CharacterBody2D, IMortal
     public void OnHit(Vector2 hitPosition, Vector2 hitDirection)
     {
         HitPoints--;
-        if ((HitPoints < 1) && (playerState != PlayerState.DEAD))
+        if ((HitPoints < 1) && (playerState != PlayerStates.DEAD))
         {
             deathHitDirection = hitDirection;
             Die();
         }
 
-        if (playerState == PlayerState.DEAD)
+        if (playerState == PlayerStates.DEAD)
         {
             // TODO: could clean up this math a bit, make it simpler
             var bloodSpawner = BloodSpawnerScene.Instantiate<BloodSpawner>();
@@ -184,7 +184,7 @@ public partial class Player : CharacterBody2D, IMortal
 
     public void Die()
     {
-        playerState = PlayerState.DEAD;
+        playerState = PlayerStates.DEAD;
         Velocity = new Vector2(0, 0);
     }
     #endregion
