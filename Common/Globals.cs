@@ -13,5 +13,6 @@ public static class Globals
 
     // group string names
     // TODO: there's a better way to do this
+    public const string GROUP_PLAYER = "player";
     public const string GROUP_REFLECTORS = "reflectors";
 }

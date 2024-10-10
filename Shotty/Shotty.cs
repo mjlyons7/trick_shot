@@ -54,7 +54,7 @@ public partial class Shotty : BulletSpawner
             Shoot(Transform);
 
         // print debug info
-        HelperPrint(debugStrings, delta);
+        //HelperPrint(debugStrings, delta);
     }
 
     // rotate towards the target

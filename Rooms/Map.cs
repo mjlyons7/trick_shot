@@ -16,14 +16,12 @@ public partial class Map : Node2D
     {
         if (Input.IsActionJustPressed("reset"))
             GetTree().ReloadCurrentScene();
-        // toggle pause
-        // TODO: GetTree().Paused = true;
+        
         else if (Input.IsActionJustPressed("pause"))
         {
             var tree = GetTree();
             tree.Paused = !tree.Paused;
             Globals.PAUSE_ON = tree.Paused;
         }
-        
     }
 }

@@ -29,50 +29,51 @@ public partial class Textbox : CanvasLayer
 		HideTextbox();
 
 		textQueue = new Queue<string>();
-
-        // TODO: testing remove later
-        AddText("Testing testing 1 2 3");
-		AddText("Houston we have text");
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		var enterJustPressed = Input.IsActionJustPressed("enter");
+        // TODO: do I want to pause the game or something here?
 
+        runStateMachine(delta);
+    }
+
+	private void runStateMachine(double delta)
+	{
         switch (state)
-		{
-			case TextboxStates.READY:
-				if (textQueue.Count > 0)
-				{
-					ShowTextbox();
+        {
+            case TextboxStates.READY:
+                if (textQueue.Count > 0)
+                {
+                    ShowTextbox();
                     textDisplayTween = displayText();
-					readingDone = false;
+                    readingDone = false;
                     state = TextboxStates.READING;
                 }
-				else
-				{
-					HideTextbox();
+                else
+                {
+                    HideTextbox();
                 }
                 break;
-			case TextboxStates.READING:
+            case TextboxStates.READING:
                 if (Input.IsActionJustPressed("enter"))
-				{
-					// finish tween immediately
-					textDisplayTween.CustomStep(99);
+                {
+                    // finish tween immediately
+                    textDisplayTween.CustomStep(99);
                 }
                 if (readingDone)
-					state = TextboxStates.FINISHED;
+                    state = TextboxStates.FINISHED;
                 break;
-			case TextboxStates.FINISHED:
-				endSymbol.Text = "v";
-				if (Input.IsActionJustPressed("enter"))
-				{
-					endSymbol.Text = "";
+            case TextboxStates.FINISHED:
+                endSymbol.Text = "v";
+                if (Input.IsActionJustPressed("enter"))
+                {
+                    endSymbol.Text = "";
                     state = TextboxStates.READY;
                 }
-				break;	
-		}
+                break;
+        }
     }
 
 	public void AddText(string textToAdd)

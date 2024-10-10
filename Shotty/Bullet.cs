@@ -87,7 +87,6 @@ public partial class Bullet : Area2D
             helper.PrintAfterInterval(strings);
             distanceToTravel = 0;
         }
-
     }
 
     private void MoveToNextCollision()

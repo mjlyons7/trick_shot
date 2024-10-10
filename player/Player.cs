@@ -72,7 +72,7 @@ public partial class Player : CharacterBody2D, IMortal
             var strings = new List<string>();
             //strings.Add("direction input: " + directionVector.ToString());
             strings.Add("Velocity: " + Velocity.ToString());
-            helper.PrintAfterInterval(strings);
+            //helper.PrintAfterInterval(strings);
         }
     }
 

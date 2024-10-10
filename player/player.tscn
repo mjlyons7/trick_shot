@@ -31,14 +31,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7u7lm"]
 size = Vector2(36, 93.5)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_dbdpr")
 BloodSpawnerScene = ExtResource("2_unl2h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vu8yo")
-animation = &"dead"
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -0.25)
