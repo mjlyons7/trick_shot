@@ -1407,6 +1407,11 @@ process_mode = 1
 
 [node name="Sign" parent="pausable" instance=ExtResource("9_bb6sg")]
 position = Vector2(476, 97)
+signText = "Press 'E' to read signs!"
+
+[node name="Sign2" parent="pausable" instance=ExtResource("9_bb6sg")]
+position = Vector2(800, 97)
+signText = "Good job"
 
 [node name="TileMap" type="TileMap" parent="pausable"]
 tile_set = SubResource("TileSet_2oad6")

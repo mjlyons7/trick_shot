@@ -1,9 +1,12 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public partial class Textbox : CanvasLayer
 {
+    public bool readingInProgress;
+
 	// things in the scene
 	Label startSymbol;
     Label labelString;
@@ -35,6 +38,7 @@ public partial class Textbox : CanvasLayer
 	public override void _Process(double delta)
 	{
         // TODO: do I want to pause the game or something here?
+        readingInProgress = textBoxContainer.Visible;
 
         runStateMachine(delta);
     }
@@ -78,7 +82,7 @@ public partial class Textbox : CanvasLayer
 
 	public void AddText(string textToAdd)
 	{
-		// TODO: make sure textToAdd isn't blank
+        Debug.Assert(textToAdd is not null, "Text not set for textbox");
 		textQueue.Enqueue(textToAdd);
     }
 

@@ -29,7 +29,8 @@ animations = [{
 position = Vector2(0, -70)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_lwtxy")
 animation = &"hey_listen"
 autoplay = "hey_listen"
-frame_progress = 0.166935
+frame_progress = 0.724687

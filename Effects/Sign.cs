@@ -11,7 +11,10 @@ public partial class Sign : Node2D
 	[Export]
 	PackedScene speechBubbleScene;
 
-	Textbox signTextbox;
+	[Export]
+	string signText;
+
+	static Textbox signTextbox;
 	Node2D speechBubble;
 
 	bool playerInsideSignArea;
@@ -19,10 +22,13 @@ public partial class Sign : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		signTextbox = textboxScene.Instantiate<Textbox>();
-		speechBubble = speechBubbleScene.Instantiate<Node2D>();
+		if (signTextbox is null)
+		{
+			signTextbox = textboxScene.Instantiate<Textbox>();
+			AddChild(signTextbox);
+		}
 
-        AddChild(signTextbox);
+        speechBubble = speechBubbleScene.Instantiate<Node2D>();
 		AddChild(speechBubble);
 
 		speechBubble.Visible = false;
@@ -32,13 +38,15 @@ public partial class Sign : Node2D
 	public override void _Process(double delta)
 	{
         // if player inside area, then look for "enter" input, and if get it, load text box
-        if (playerInsideSignArea)
+        if (playerInsideSignArea && !signTextbox.readingInProgress)
         {
             if (Input.IsActionJustPressed("enter"))
             {
-				signTextbox.AddText("Press 'E' to read signs!");
+				signTextbox.AddText(signText);
             }
         }
+
+		speechBubble.Visible = (playerInsideSignArea && !signTextbox.readingInProgress);
     }
 
 	// signal
@@ -47,7 +55,6 @@ public partial class Sign : Node2D
 		StringName playerGroupName = Globals.GROUP_PLAYER;
 		if (bodyEntering.GetGroups().Contains<StringName>(playerGroupName))
 		{
-			speechBubble.Visible = true;
             playerInsideSignArea = true;
         }
     }
@@ -57,7 +64,6 @@ public partial class Sign : Node2D
         StringName playerGroupName = Globals.GROUP_PLAYER;
 		if (bodyExiting.GetGroups().Contains<StringName>(playerGroupName))
 		{
-			speechBubble.Visible = false;
             playerInsideSignArea = false;
         }
     }
