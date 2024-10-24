@@ -129,7 +129,6 @@ public partial class Player : CharacterBody2D, IMortal
     {
         Debug.Assert(deathHitDirection.LengthSquared() != 0, "death hit direction was not set");
 
-        // TODO:
         double fallOverTime = 1;
         if ((fallOverTime < timeDead) && (!fallenOver))
         {

@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://caac24krmm5i4"]
+
+[ext_resource type="Script" path="res://Actors/Target.cs" id="1_mnuks"]
+[ext_resource type="Texture2D" uid="uid://bgdieash4qtpt" path="res://assets/sprites/animated_sprites/target_explode1.png" id="2_l4bp8"]
+[ext_resource type="Texture2D" uid="uid://d3k6guvcd30w8" path="res://assets/sprites/animated_sprites/target_explode2.png" id="3_qfbmp"]
+[ext_resource type="Texture2D" uid="uid://dnrny0jbyc3pi" path="res://assets/sprites/animated_sprites/target_explode3.png" id="4_kxgb7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nf2di"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l4bp8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qfbmp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kxgb7")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ep7de"]
+radius = 16.0
+
+[node name="Target" type="StaticBody2D"]
+script = ExtResource("1_mnuks")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nf2di")
+animation = &"explode"
+frame = 1
+frame_progress = 0.677912
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ep7de")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimationFinished"]
