@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dk5cl3gwy1lhd"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_biwri"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_iltwg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ei53f"]
+
+[node name="Stopper" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.588235, 0.294118, 0, 1)
+scale = Vector2(20, 20)
+texture = SubResource("CanvasTexture_biwri")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16.75, 0)
+scale = Vector2(34.5, 1)
+texture = SubResource("CanvasTexture_iltwg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ei53f")

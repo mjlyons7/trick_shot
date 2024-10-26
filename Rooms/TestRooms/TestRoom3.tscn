@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://s6q7m7w4rpw7"]
+[gd_scene load_steps=13 format=4 uid="uid://s6q7m7w4rpw7"]
 
 [ext_resource type="Script" path="res://Rooms/Map.cs" id="1_0i5y1"]
 [ext_resource type="PackedScene" uid="uid://fci1014ky14v" path="res://Effects/Sign.tscn" id="2_enagu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b3cy6l137oviy" path="res://assets/sprites/clouds.png" id="5_cgqlu"]
 [ext_resource type="PackedScene" uid="uid://c7a6hy2q0u32n" path="res://Shotty/Shotty.tscn" id="6_8cvg1"]
 [ext_resource type="PackedScene" uid="uid://dqr5bwj62dql3" path="res://Actors/Reflector.tscn" id="7_cj62t"]
+[ext_resource type="PackedScene" uid="uid://dk5cl3gwy1lhd" path="res://Actors/stopper.tscn" id="8_8kmhc"]
 [ext_resource type="PackedScene" uid="uid://c053uch81yt0d" path="res://Common/DebugMenu.tscn" id="8_ywxma"]
 [ext_resource type="PackedScene" uid="uid://caac24krmm5i4" path="res://Actors/target.tscn" id="9_28xgj"]
 
@@ -357,10 +358,10 @@ process_mode = 1
 position = Vector2(476, 97)
 signText = "Press 'E' to read signs!"
 
-[node name="TileMap" type="TileMapLayer" parent="pausable"]
+[node name="TileMapLayer" type="TileMapLayer" parent="pausable"]
 tile_set = SubResource("TileSet_2oad6")
 
-[node name="Layer0" type="TileMapLayer" parent="pausable/TileMap"]
+[node name="Layer0" type="TileMapLayer" parent="pausable/TileMapLayer"]
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD+/wIAAQACAAkAAAD//wIAAQACAAkAAAAAAAIAAQACAAkAAAABAAIAAQACAAkAAAACAAIAAQACAAkAAAADAAIAAQACAAkAAAAEAAIAAQACAAkAAAAFAAIAAQACAAkAAAAGAAIAAQACAAkAAAAHAAIAAQACAAkAAAAIAAIAAQACAAkAAAAJAAIAAQACAAkAAAAKAAIAAQACAAkAAAALAAIAAQACAAkAAAAMAAIAAQACAAkAAAANAAIAAQACAAkAAAAOAAIAAQACAAkAAAAPAAIAAQACAAkAAAAQAAIAAQACAAkAAAARAAIAAQACAAkAAAASAAIAAQACAAkAAAATAAIAAQACAAkAAAAUAAIAAQACAAkAAAAVAAIAAQACAAkAAAAWAAIAAQACAAkAAAAXAAIAAQACAAkAAAAYAAIAAQACAAkAAAAZAAIAAQACAAkAAAAaAAIAAQACAAkAAAAbAAIAAQACAAkAAAAcAAIAAQACAAkAAAAdAAIAAQACAAkAAAAgAAIAAQACAAkAAAAeAAIAAQACAAkAAAAfAAIAAQACAAkAAAAhAAIAAQACAAkAAAAiAAIAAQACAAkAAAAjAAIAAQACAAkAAAD+/wMAAQAAAAkAAAD//wMAAQAAAAkAAAAAAAMAAQAAAAkAAAABAAMAAQAAAAkAAAACAAMAAQAAAAkAAAADAAMAAQAAAAkAAAAEAAMAAQAAAAkAAAAFAAMAAQAAAAkAAAAGAAMAAQAAAAkAAAAHAAMAAQAAAAkAAAAIAAMAAQAAAAkAAAAJAAMAAQAAAAkAAAAKAAMAAQAAAAkAAAALAAMAAQAAAAkAAAAMAAMAAQAAAAkAAAANAAMAAQAAAAkAAAAOAAMAAQAAAAkAAAAPAAMAAQAAAAkAAAAQAAMAAQAAAAkAAAARAAMAAQAAAAkAAAASAAMAAQAAAAkAAAATAAMAAQAAAAkAAAAUAAMAAQAAAAkAAAAVAAMAAQAAAAkAAAAWAAMAAQAAAAkAAAAXAAMAAQAAAAkAAAAYAAMAAQAAAAkAAAAZAAMAAQAAAAkAAAAaAAMAAQAAAAkAAAAbAAMAAQAAAAkAAAAcAAMAAQAAAAkAAAAdAAMAAQAAAAkAAAAeAAMAAQAAAAkAAAAfAAMAAQAAAAkAAAAgAAMAAQAAAAkAAAAhAAMAAQAAAAkAAAAiAAMAAQAAAAkAAAAjAAMAAQAAAAkAAAA=")
 tile_set = SubResource("TileSet_2oad6")
@@ -387,18 +388,41 @@ region_rect = Rect2(0, 0, 2048, 2048)
 
 [node name="Shotty" parent="pausable" instance=ExtResource("6_8cvg1")]
 
-[node name="Reflectors" type="Node2D" parent="pausable"]
-position = Vector2(1785, -35)
+[node name="Structure" type="Node2D" parent="pausable"]
+position = Vector2(1825, -35)
 
-[node name="ReflectorRamp" parent="pausable/Reflectors" instance=ExtResource("7_cj62t")]
-position = Vector2(-345, 196)
+[node name="Stopper" parent="pausable/Structure" instance=ExtResource("8_8kmhc")]
+position = Vector2(182, 18)
+rotation = 1.5708
+scale = Vector2(1, 30)
+
+[node name="Stopper2" parent="pausable/Structure" instance=ExtResource("8_8kmhc")]
+position = Vector2(105, -131)
+rotation = 1.5708
+scale = Vector2(1, 30)
+
+[node name="Reflector4" parent="pausable/Structure" instance=ExtResource("7_cj62t")]
+position = Vector2(-382, 84)
 rotation = 0.785398
 scale = Vector2(1, 10)
 skew = 5.05447e-05
 
-[node name="Reflector" parent="pausable/Reflectors" instance=ExtResource("7_cj62t")]
-position = Vector2(-382, -63)
+[node name="Reflector" parent="pausable/Structure" instance=ExtResource("7_cj62t")]
+position = Vector2(-466, -63)
 rotation = 0.785398
+scale = Vector2(1, 10)
+skew = 5.05447e-05
+
+[node name="Reflector2" parent="pausable/Structure" instance=ExtResource("7_cj62t")]
+position = Vector2(-295, -131)
+rotation = 1.5708
+scale = Vector2(1, 10)
+skew = 5.05447e-05
+metadata/_edit_pinned_properties_ = [&"position"]
+
+[node name="Reflector3" parent="pausable/Structure" instance=ExtResource("7_cj62t")]
+position = Vector2(-218, 18)
+rotation = 1.5708
 scale = Vector2(1, 10)
 skew = 5.05447e-05
 
@@ -406,3 +430,4 @@ skew = 5.05447e-05
 visible = false
 
 [node name="Target" parent="." instance=ExtResource("9_28xgj")]
+position = Vector2(1968, -89)

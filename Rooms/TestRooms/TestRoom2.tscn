@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://s6q7m7w4rpw7"]
+[gd_scene load_steps=12 format=4 uid="uid://s6q7m7w4rpw7"]
 
 [ext_resource type="Script" path="res://Rooms/Map.cs" id="1_x1uu8"]
 [ext_resource type="Texture2D" uid="uid://b3cy6l137oviy" path="res://assets/sprites/clouds.png" id="3_q6eq3"]
@@ -361,10 +361,13 @@ signText = "Press 'E' to read signs!"
 position = Vector2(800, 97)
 signText = "Good job"
 
-[node name="TileMap" type="TileMap" parent="pausable"]
+[node name="TileMapLayer" type="TileMapLayer" parent="pausable"]
 tile_set = SubResource("TileSet_2oad6")
-format = 2
-layer_0/tile_data = PackedInt32Array(196606, 131073, 9, 196607, 131073, 9, 131072, 131073, 9, 131073, 131073, 9, 131074, 131073, 9, 131075, 131073, 9, 131076, 131073, 9, 131077, 131073, 9, 131078, 131073, 9, 131079, 131073, 9, 131080, 131073, 9, 131081, 131073, 9, 131082, 131073, 9, 131083, 131073, 9, 131084, 131073, 9, 131085, 131073, 9, 131086, 131073, 9, 131087, 131073, 9, 131088, 131073, 9, 131089, 131073, 9, 131090, 131073, 9, 131091, 131073, 9, 131092, 131073, 9, 131093, 131073, 9, 131094, 131073, 9, 131095, 131073, 9, 131096, 131073, 9, 131097, 131073, 9, 131098, 131073, 9, 131099, 131073, 9, 131100, 131073, 9, 131101, 131073, 9, 131104, 131073, 9, 131102, 131073, 9, 131103, 131073, 9, 131105, 131073, 9, 131106, 131073, 9, 131107, 131073, 9, 262142, 1, 9, 262143, 1, 9, 196608, 1, 9, 196609, 1, 9, 196610, 1, 9, 196611, 1, 9, 196612, 1, 9, 196613, 1, 9, 196614, 1, 9, 196615, 1, 9, 196616, 1, 9, 196617, 1, 9, 196618, 1, 9, 196619, 1, 9, 196620, 1, 9, 196621, 1, 9, 196622, 1, 9, 196623, 1, 9, 196624, 1, 9, 196625, 1, 9, 196626, 1, 9, 196627, 1, 9, 196628, 1, 9, 196629, 1, 9, 196630, 1, 9, 196631, 1, 9, 196632, 1, 9, 196633, 1, 9, 196634, 1, 9, 196635, 1, 9, 196636, 1, 9, 196637, 1, 9, 196638, 1, 9, 196639, 1, 9, 196640, 1, 9, 196641, 1, 9, 196642, 1, 9, 196643, 1, 9)
+
+[node name="Layer0" type="TileMapLayer" parent="pausable/TileMapLayer"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD+/wIAAQACAAkAAAD//wIAAQACAAkAAAAAAAIAAQACAAkAAAABAAIAAQACAAkAAAACAAIAAQACAAkAAAADAAIAAQACAAkAAAAEAAIAAQACAAkAAAAFAAIAAQACAAkAAAAGAAIAAQACAAkAAAAHAAIAAQACAAkAAAAIAAIAAQACAAkAAAAJAAIAAQACAAkAAAAKAAIAAQACAAkAAAALAAIAAQACAAkAAAAMAAIAAQACAAkAAAANAAIAAQACAAkAAAAOAAIAAQACAAkAAAAPAAIAAQACAAkAAAAQAAIAAQACAAkAAAARAAIAAQACAAkAAAASAAIAAQACAAkAAAATAAIAAQACAAkAAAAUAAIAAQACAAkAAAAVAAIAAQACAAkAAAAWAAIAAQACAAkAAAAXAAIAAQACAAkAAAAYAAIAAQACAAkAAAAZAAIAAQACAAkAAAAaAAIAAQACAAkAAAAbAAIAAQACAAkAAAAcAAIAAQACAAkAAAAdAAIAAQACAAkAAAAgAAIAAQACAAkAAAAeAAIAAQACAAkAAAAfAAIAAQACAAkAAAAhAAIAAQACAAkAAAAiAAIAAQACAAkAAAAjAAIAAQACAAkAAAD+/wMAAQAAAAkAAAD//wMAAQAAAAkAAAAAAAMAAQAAAAkAAAABAAMAAQAAAAkAAAACAAMAAQAAAAkAAAADAAMAAQAAAAkAAAAEAAMAAQAAAAkAAAAFAAMAAQAAAAkAAAAGAAMAAQAAAAkAAAAHAAMAAQAAAAkAAAAIAAMAAQAAAAkAAAAJAAMAAQAAAAkAAAAKAAMAAQAAAAkAAAALAAMAAQAAAAkAAAAMAAMAAQAAAAkAAAANAAMAAQAAAAkAAAAOAAMAAQAAAAkAAAAPAAMAAQAAAAkAAAAQAAMAAQAAAAkAAAARAAMAAQAAAAkAAAASAAMAAQAAAAkAAAATAAMAAQAAAAkAAAAUAAMAAQAAAAkAAAAVAAMAAQAAAAkAAAAWAAMAAQAAAAkAAAAXAAMAAQAAAAkAAAAYAAMAAQAAAAkAAAAZAAMAAQAAAAkAAAAaAAMAAQAAAAkAAAAbAAMAAQAAAAkAAAAcAAMAAQAAAAkAAAAdAAMAAQAAAAkAAAAeAAMAAQAAAAkAAAAfAAMAAQAAAAkAAAAgAAMAAQAAAAkAAAAhAAMAAQAAAAkAAAAiAAMAAQAAAAkAAAAjAAMAAQAAAAkAAAA=")
+tile_set = SubResource("TileSet_2oad6")
 
 [node name="Player" parent="pausable" instance=ExtResource("5_yeqos")]
 position = Vector2(125, 42)
@@ -372,11 +375,12 @@ floor_max_angle = 0.872665
 
 [node name="Camera2D" type="Camera2D" parent="pausable/Player"]
 
-[node name="SkyBackground" type="ParallaxBackground" parent="pausable"]
+[node name="SkyBackground" type="Node2D" parent="pausable"]
+z_index = -1
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="pausable/SkyBackground"]
-motion_scale = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(2048, 2048)
+[node name="ParallaxLayer" type="Parallax2D" parent="pausable/SkyBackground"]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(2048, 2048)
 
 [node name="Clouds" type="Sprite2D" parent="pausable/SkyBackground/ParallaxLayer"]
 texture_repeat = 2
@@ -386,7 +390,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 2048, 2048)
 
 [node name="Shotty" parent="pausable" instance=ExtResource("6_80bht")]
-visible = false
 
 [node name="Spider" parent="pausable" instance=ExtResource("7_a1gdj")]
 position = Vector2(2247, -198)
