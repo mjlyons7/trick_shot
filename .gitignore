@@ -1,12 +1,10 @@
 # Godot 4+ specific ignores
 .godot/
+*.import
 
-# ignore pictures and music
-sprites/
+# ignore music
 sounds/
 fonts/
-assets/
-*.png
 
 # visual studio
 ## Ignore Visual Studio temporary files, build results, and

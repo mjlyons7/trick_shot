@@ -370,8 +370,6 @@ tile_set = SubResource("TileSet_2oad6")
 position = Vector2(125, 42)
 floor_max_angle = 0.872665
 
-[node name="Camera2D" type="Camera2D" parent="pausable/Player"]
-
 [node name="SkyBackground" type="Node2D" parent="pausable"]
 
 [node name="ParallaxLayer" type="Parallax2D" parent="pausable/SkyBackground"]
@@ -426,8 +424,12 @@ rotation = 1.5708
 scale = Vector2(1, 10)
 skew = 5.05447e-05
 
+[node name="Target" parent="pausable" instance=ExtResource("9_28xgj")]
+position = Vector2(1968, -89)
+
 [node name="DebugMenu" parent="." instance=ExtResource("8_ywxma")]
 visible = false
 
-[node name="Target" parent="." instance=ExtResource("9_28xgj")]
-position = Vector2(1968, -89)
+[node name="ViewportRoot" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="ViewportRoot"]
