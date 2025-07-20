@@ -1,15 +1,16 @@
-[gd_scene load_steps=13 format=4 uid="uid://s6q7m7w4rpw7"]
+[gd_scene load_steps=14 format=4 uid="uid://s6q7m7w4rpw7"]
 
 [ext_resource type="Script" path="res://Rooms/Map.cs" id="1_0i5y1"]
 [ext_resource type="PackedScene" uid="uid://fci1014ky14v" path="res://Effects/Sign.tscn" id="2_enagu"]
-[ext_resource type="Texture2D" uid="uid://crlicpk51ed3n" path="res://assets/sprites/tilesheet_complete.png" id="3_tjuwu"]
+[ext_resource type="Texture2D" uid="uid://d2dxqrevke6ht" path="res://assets/sprites/tilesheet_complete.png" id="3_tjuwu"]
 [ext_resource type="PackedScene" uid="uid://ca8kp46mqdnyd" path="res://player/player.tscn" id="4_suluo"]
-[ext_resource type="Texture2D" uid="uid://b3cy6l137oviy" path="res://assets/sprites/clouds.png" id="5_cgqlu"]
+[ext_resource type="Texture2D" uid="uid://d1xeq2i48fylv" path="res://assets/sprites/clouds.png" id="5_cgqlu"]
 [ext_resource type="PackedScene" uid="uid://c7a6hy2q0u32n" path="res://Shotty/Shotty.tscn" id="6_8cvg1"]
 [ext_resource type="PackedScene" uid="uid://dqr5bwj62dql3" path="res://Actors/Reflector.tscn" id="7_cj62t"]
 [ext_resource type="PackedScene" uid="uid://dk5cl3gwy1lhd" path="res://Actors/stopper.tscn" id="8_8kmhc"]
 [ext_resource type="PackedScene" uid="uid://c053uch81yt0d" path="res://Common/DebugMenu.tscn" id="8_ywxma"]
 [ext_resource type="PackedScene" uid="uid://caac24krmm5i4" path="res://Actors/target.tscn" id="9_28xgj"]
+[ext_resource type="Script" path="res://Rooms/TestRooms/TrickCamera2d.cs" id="11_bg54g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_umrs4"]
 resource_name = "kenney_sample"
@@ -432,4 +433,5 @@ visible = false
 
 [node name="ViewportRoot" type="Node2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="ViewportRoot"]
+[node name="TrickCamera2D" type="Camera2D" parent="ViewportRoot"]
+script = ExtResource("11_bg54g")
